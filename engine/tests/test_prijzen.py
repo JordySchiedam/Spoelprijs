@@ -126,5 +126,47 @@ class TestDraai(unittest.TestCase):
         self.assertFalse([o for o in res["products"][0]["offers"] if o["shop"] == "amz"])
 
 
+class TestAutoCatalogus(unittest.TestCase):
+    def test_herken(self):
+        p = pz.herken_filament("eSUN PETG Black, 1.75 mm / 1000 g", "Filament", "eSUN", "Black")
+        self.assertEqual((p["material"], p["weight"], p["name"], p["colorName"], p["color"]), ("PETG", 1000, "PETG", "Black", "#1b1b1b"))
+        p = pz.herken_filament("3DJake ecoPLA Matt Black, 1.75 mm / 1000 g", "Filament", "3DJake", "Black")
+        self.assertTrue(p["matte"])
+        p = pz.herken_filament("SUNLU PLA+ Bundle 4x 1 kg, 1.75 mm", "Filament", "SUNLU", "Mixed")
+        self.assertEqual((p["material"], p["weight"]), ("PLA", 4000))
+        p = pz.herken_filament("Siraya Tech Flex TPU 95A Black, 1.75 mm / 1000 g", "Filament", "Siraya Tech", "Black")
+        self.assertEqual((p["material"], p["shore"]), ("TPU", "95A"))
+        # Geen filament, verkeerde diameter of geen gewicht: niet toevoegen
+        self.assertIsNone(pz.herken_filament("Prusa Core One 3D Printer Kit", "3D Printers"))
+        self.assertIsNone(pz.herken_filament("PLA Extrafill White, 2.85 mm / 750 g", "Filament"))
+        self.assertIsNone(pz.herken_filament("Elegoo PLA Grey 1.75 mm", "Filament"))
+        # Dichtheid (g/cm³) is geen gewicht
+        self.assertIsNone(pz.herken_filament("PLA White 1.75 mm, 1.24 g/cm3", "Filament"))
+
+    def test_draai_met_auto(self):
+        tmp = Path(tempfile.mkdtemp())
+        winkels = {"jake": {"naam": "3DJake", "type": "feed", "affiliate": True, "auto_catalogus": True,
+                            "feed_url": furl("awin_auto.csv"),
+                            "kolommen": {"ean": "ean", "id": "merchant_product_id", "naam": "product_name",
+                                         "prijs": "search_price", "voorraad": "in_stock", "url": "aw_deep_link",
+                                         "merk": "brand_name", "kleur": "colour", "categorie": "merchant_category"},
+                            "verzending": 4.95, "gratis_vanaf": 49}}
+        catalogus = [{"id": "sunlu-pla-matte-white", "brand": "SUNLU", "name": "PLA Matte", "material": "PLA",
+                      "color": "#fff", "colorName": "Wit", "weight": 1000, "ean": "6933582309633", "winkels": {}}]
+        (tmp / "w.json").write_text(json.dumps(winkels))
+        (tmp / "p.json").write_text(json.dumps(catalogus))
+        res = pz.draai(tmp / "w.json", tmp / "p.json", tmp / "d.json", None, ophaler=pz.Ophaler(0))
+        ids = [p["id"] for p in res["products"]]
+        # Catalogusproduct krijgt automatisch de feedprijs, zonder dubbel product
+        self.assertEqual(res["products"][0]["offers"][0]["price"], 15.99)
+        self.assertEqual(sum(1 for p in res["products"] if p.get("ean") == "6933582309633"), 1)
+        # 5 nieuwe: eSUN PETG, PolyFlex 750 g, PLA+ bundel, ecoPLA Matt, PolyTerra (printer, 2.85 mm en zonder gewicht vallen af)
+        self.assertEqual(res["_rapport"]["auto"], 5)
+        self.assertEqual(len(ids), 6)
+        tpu = next(p for p in res["products"] if p["material"] == "TPU")
+        self.assertEqual(tpu["weight"], 750)
+        self.assertTrue(all(p["offers"] for p in res["products"]))
+
+
 if __name__ == "__main__":
     unittest.main()

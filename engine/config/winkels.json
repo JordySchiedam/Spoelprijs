@@ -4,7 +4,9 @@
     "type": "handmatig",
     "affiliate": true,
     "affiliate_sjabloon": "{url_raw}?tag={tag}",
-    "affiliate_env": { "tag": "AMAZON_TAG" },
+    "affiliate_env": {
+      "tag": "AMAZON_TAG"
+    },
     "max_dagen_handmatig": 1,
     "verzending": 3.99,
     "gratis_vanaf": 20,
@@ -23,11 +25,16 @@
       "prijs": "search_price",
       "voorraad": "in_stock",
       "url": "aw_deep_link",
-      "verzending": "delivery_cost"
+      "verzending": "delivery_cost",
+      "merk": "brand_name",
+      "kleur": "colour",
+      "categorie": "merchant_category"
     },
     "verzending": 4.95,
     "gratis_vanaf": 49,
-    "_opmerking": "Feed-URL staat in je Awin-account onder Toolbox > Create-a-Feed. Verzendkosten controleren."
+    "_opmerking": "Feed-URL staat in je Awin-account onder Toolbox > Create-a-Feed. Kies daar ook de kolommen brand_name, colour en merchant_category, dan vult de site zich automatisch met alle filamenten uit de feed. Verzendkosten controleren.",
+    "auto_catalogus": true,
+    "auto_max": 2000
   },
   "fepshop": {
     "naam": "FEPshop",
@@ -43,11 +50,15 @@
       "prijs": "price",
       "voorraad": "in_stock",
       "url": "link",
-      "verzending": "delivery_costs"
+      "verzending": "delivery_costs",
+      "merk": "brand",
+      "kleur": "color",
+      "categorie": "category"
     },
     "verzending": 4.95,
     "gratis_vanaf": 50,
-    "_opmerking": "Zet actief op true na goedkeuring. Kolomnamen controleren in de Daisycon-feed."
+    "_opmerking": "Zet actief op true na goedkeuring. Kolomnamen controleren in de Daisycon-feed.",
+    "auto_catalogus": true
   },
   "proshop": {
     "naam": "Proshop",

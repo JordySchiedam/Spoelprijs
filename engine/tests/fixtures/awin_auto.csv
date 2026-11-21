@@ -1,0 +1,10 @@
+aw_deep_link,product_name,merchant_product_id,search_price,ean,in_stock,delivery_cost,brand_name,colour,merchant_category
+https://awin.test/1,"SUNLU PLA Matt White, 1.75 mm / 1000 g",SUN-1,15.99,6933582309633,1,4.95,SUNLU,White,Filament
+https://awin.test/2,"eSUN PETG Black, 1.75 mm / 1000 g",ESUN-2,19.49,6922572264083,1,4.95,eSUN,Black,Filament
+https://awin.test/3,"Polymaker PolyFlex TPU95 Black, 1.75 mm / 750 g",PM-3,27.99,6938936701231,1,4.95,Polymaker,Black,Filament
+https://awin.test/4,"Fillamentum PLA Extrafill Traffic White, 2.85 mm / 750 g",FIL-4,24.99,8594185640012,1,4.95,Fillamentum,Traffic White,Filament
+https://awin.test/5,"Prusa Core One 3D Printer Kit",PR-5,1099.00,8594185640999,1,0,Prusa,,3D Printers
+https://awin.test/6,"SUNLU PLA+ Bundle 4x 1 kg, 1.75 mm",SUN-6,59.96,6933582399991,1,0,SUNLU,Mixed,Filament
+https://awin.test/7,"Elegoo PLA Grey 1.75 mm",ELG-7,13.99,6976021700000,1,4.95,Elegoo,Grey,Filament
+https://awin.test/8,"3DJake ecoPLA Matt Black, 1.75 mm / 1000 g",JAKE-8,12.99,9120043485464,0,4.95,3DJake,Black,Filament
+https://awin.test/9,"Polymaker PolyTerra PLA Charcoal Black, 1.75 mm / 1000 g",PM-9,18.99,6938936708209,1,4.95,Polymaker,Charcoal Black,Filament

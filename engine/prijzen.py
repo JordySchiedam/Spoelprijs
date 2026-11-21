@@ -161,6 +161,12 @@ def lees_feed(ruw: bytes, kolommen: dict) -> dict[str, dict]:
             "url": (rij.get(kolommen.get("url", ""), "") or "").strip() or None,
             "ship": parse_prijs(rij.get(kolommen.get("verzending", ""), "")) if kolommen.get("verzending") else None,
             "title": (rij.get(kolommen.get("naam", ""), "") or "").strip(),
+            # Extra velden voor de automatische catalogus
+            "ean": (rij.get(kolommen.get("ean", ""), "") or "").strip().split(";")[0].split(",")[0].strip(),
+            "feed_id": (rij.get(kolommen.get("id", ""), "") or "").strip(),
+            "brand": (rij.get(kolommen.get("merk", ""), "") or "").strip(),
+            "kleur": (rij.get(kolommen.get("kleur", ""), "") or "").strip(),
+            "categorie": (rij.get(kolommen.get("categorie", ""), "") or "").strip(),
         }
         for veld in ("ean", "id"):
             k = kolommen.get(veld)
@@ -169,6 +175,118 @@ def lees_feed(ruw: bytes, kolommen: dict) -> dict[str, dict]:
                     if waarde:
                         index[f"{veld}:{waarde.lstrip('0')}"] = aanbod
     return index
+
+
+# --------------------------------------------------------------------------------------
+# Automatische catalogus: elk filament uit een feed wordt een product op de site
+# --------------------------------------------------------------------------------------
+
+MATERIALEN = [  # volgorde is belangrijk: specifieker eerst
+    # PETG/PLA mogen in een woord staan (easyPETG, ecoPLA), maar niet gevolgd door een letter (Plastic)
+    (r"PETG(?![a-z])", "PETG"), (r"PLA(?![a-z])", "PLA"), (r"TPU(?![a-z])", "TPU"),
+    (r"\bTPE\b", "TPE"), (r"\bABS\b", "ABS"), (r"\bASA\b", "ASA"),
+    (r"\b(PA|PA6|PA12|NYLON)\b", "PA"), (r"\bPC\b", "PC"),
+]
+KLEUREN = [  # (zoekwoorden, hex) — voor het spoeltje op de site
+    (("transparant", "transparent", "clear", "natural", "naturel", "neutraal"), "#d9e6ea"),
+    (("zwart", "black", "charcoal", "jet"), "#1b1b1b"),
+    (("wit", "white", "ivory", "bone"), "#f2f2ef"),
+    (("grijs", "grey", "gray", "silver", "zilver", "antraciet", "anthracite"), "#8d9196"),
+    (("rood", "red"), "#d23b2f"), (("oranje", "orange"), "#ef7d22"),
+    (("geel", "yellow"), "#f2c230"), (("groen", "green", "olive"), "#3c9a4a"),
+    (("blauw", "blue", "navy", "teal", "cyan"), "#2f6fd6"), (("paars", "purple", "violet", "lavender"), "#7d4fc4"),
+    (("roze", "pink", "magenta"), "#e86aa6"), (("bruin", "brown", "wood", "coffee", "beige", "skin"), "#8a5a3b"),
+    (("goud", "gold", "brons", "bronze", "copper", "koper"), "#c49a3a"),
+]
+
+
+def _gewicht_gram(tekst: str) -> int | None:
+    t = tekst.lower().replace(",", ".")
+    m = re.search(r"(\d+)\s*[x×]\s*(\d+(?:\.\d+)?)\s*(kg|g)\b", t)
+    if m:
+        n, w, eenheid = int(m.group(1)), float(m.group(2)), m.group(3)
+        return int(round(n * (w * 1000 if eenheid == "kg" else w)))
+    treffers = re.findall(r"(\d+(?:\.\d+)?)\s*(kg|g)\b(?!\s*/\s*cm)", t)
+    if not treffers:
+        return None
+    w, eenheid = treffers[-1]
+    g = float(w) * 1000 if eenheid == "kg" else float(w)
+    return int(round(g)) if 100 <= g <= 10000 else None
+
+
+def herken_filament(titel: str, categorie: str = "", merk: str = "", kleur: str = "") -> dict | None:
+    """Maakt van een feedregel een productbeschrijving, of None als het geen 1,75 mm-filamentrol is."""
+    tekst = f"{titel} {categorie}"
+    laag = tekst.lower()
+    if "filament" not in laag:
+        return None
+    if re.search(r"2[.,]85|3[.,]0+\s*mm|\b3\s*mm\b", laag):
+        return None  # andere diameter
+    if re.search(r"\b(printer|nozzle|dryer|droger|hotend|extruder|pen|spoolholder|spoelhouder|sample|proef)\b", laag) and not re.search(r"\d\s*(kg|g)\b", laag):
+        return None
+    gewicht = _gewicht_gram(titel)
+    if not gewicht:
+        return None
+    materiaal = next((m for patroon, m in MATERIALEN if re.search(patroon, titel, re.I)), None)
+    if not materiaal:
+        return None
+    mat = bool(re.search(r"\bmat(t|te)?\b", titel, re.I))
+    shore = re.search(r"\b(\d{2})\s*A\b", titel)
+    kleurnaam = kleur.strip()
+    zoek = (kleurnaam or titel).lower()
+    hex_ = next((h for woorden, h in KLEUREN if any(w in zoek for w in woorden)), "#9aa0a6")
+
+    naam = titel.split(",")[0]
+    if merk and naam.lower().startswith(merk.lower()):
+        naam = naam[len(merk):]
+    naam = re.sub(r"\b1[.,]75\s*mm\b|\d+(?:[.,]\d+)?\s*(kg|g)\b|/", " ", naam, flags=re.I)
+    if kleurnaam:
+        naam = re.sub(re.escape(kleurnaam) + r"\s*$", "", naam.strip(), flags=re.I)
+    naam = re.sub(r"\s+", " ", naam).strip(" -–") or materiaal
+    if not kleurnaam:
+        kleurnaam = "Zie winkel"
+
+    p = {"brand": merk or titel.split()[0], "name": naam, "material": materiaal,
+         "color": hex_, "colorName": kleurnaam, "weight": gewicht}
+    if mat:
+        p["matte"] = True
+    if shore and materiaal in ("TPU", "TPE"):
+        p["shore"] = shore.group(1) + "A"
+    return p
+
+
+def auto_producten(feeds: dict[str, dict], winkels: dict, bestaand: list[dict]) -> list[dict]:
+    """Voegt alle filamenten uit feeds met "auto_catalogus" toe die nog niet in de catalogus staan."""
+    gezien = {p["ean"].lstrip("0") for p in bestaand if p.get("ean")}
+    nieuw: list[dict] = []
+    for sleutel, index in feeds.items():
+        w = winkels.get(sleutel, {})
+        if not w.get("auto_catalogus"):
+            continue
+        uniek = {id(a): a for a in index.values()}.values()
+        teller = 0
+        for a in uniek:
+            ean = a.get("ean", "").lstrip("0")
+            if ean and ean in gezien:
+                continue
+            p = herken_filament(a.get("title", ""), a.get("categorie", ""), a.get("brand", ""), a.get("kleur", ""))
+            if not p:
+                continue
+            p["id"] = re.sub(r"[^a-z0-9]+", "-", f"auto-{sleutel}-{ean or a.get('feed_id')}".lower()).strip("-")
+            p["auto"] = True
+            if ean:
+                p["ean"] = ean
+                gezien.add(ean)
+            # Ook bij andere feeds aanbieden als het EAN daar voorkomt
+            p["winkels"] = {sleutel: ({} if ean else {"id": a.get("feed_id")})}
+            for ander, idx in feeds.items():
+                if ander != sleutel and ean and f"ean:{ean}" in idx:
+                    p["winkels"][ander] = {}
+            nieuw.append(p)
+            teller += 1
+            if teller >= w.get("auto_max", 2000):
+                break
+    return nieuw
 
 
 # --------------------------------------------------------------------------------------
@@ -326,6 +444,20 @@ def draai(winkels_pad: Path, producten_pad: Path, uit_pad: Path, history_pad: Pa
         except Exception as e:  # noqa: BLE001
             rapport["feeds"][sleutel] = f"mislukt: {e}"
 
+    # Catalogusproducten met een EAN ook vergelijken bij elke feed waarin dat EAN voorkomt
+    for prod in producten:
+        ean = (prod.get("ean") or "").lstrip("0")
+        if not ean:
+            continue
+        for sleutel, idx in feeds.items():
+            if sleutel not in prod.setdefault("winkels", {}) and f"ean:{ean}" in idx:
+                prod["winkels"][sleutel] = {}
+
+    # Alle overige filamenten uit de feeds automatisch toevoegen
+    auto = auto_producten(feeds, winkels, producten)
+    rapport["auto"] = len(auto)
+    producten = producten + auto
+
     uit_producten = []
     history_rijen = []
     for prod in producten:
@@ -389,7 +521,7 @@ def draai(winkels_pad: Path, producten_pad: Path, uit_pad: Path, history_pad: Pa
 
         # Ook producten zonder prijs gaan mee; de site toont die onderaan als "nog geen prijs"
         uit_producten.append({
-            k: prod[k] for k in ("id", "brand", "name", "material", "color", "colorName", "weight", "matte", "shore", "ean")
+            k: prod[k] for k in ("id", "brand", "name", "material", "color", "colorName", "weight", "matte", "shore", "ean", "auto")
             if k in prod
         } | {"offers": aanbiedingen})
 
@@ -437,6 +569,8 @@ def main(argv=None) -> int:
     print(f"Prijzen opgehaald: {r['ok']}  ·  oude prijs gebruikt: {r['oud']}  ·  producten: {len(res['products'])}")
     for k, v in r["feeds"].items():
         print(f"  feed {k}: {v}")
+    if r.get("auto"):
+        print(f"  + {r['auto']} filamenten automatisch toegevoegd uit de feeds")
     # Meldingen over een ontbrekende feed samenvatten in één regel per winkel
     zonder_feed: dict[str, int] = {}
     for m in r["mislukt"]:

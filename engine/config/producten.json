@@ -427,5 +427,435 @@
     "gecontroleerd": "2026-11-17"
    }
   }
+ },
+ {
+  "id": "123-3d-pla-zwart",
+  "brand": "123-3D",
+  "name": "PLA",
+  "material": "PLA",
+  "color": "#1b1b1b",
+  "colorName": "Zwart",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/123-3D-Filament-PLA-Zwart-1-75-mm-1-kg-DFB00230c-DFP02295c-DFP02296c-DFP14082c-DFP14110c-i11621.html"
+   }
+  }
+ },
+ {
+  "id": "123-3d-pla-wit",
+  "brand": "123-3D",
+  "name": "PLA",
+  "material": "PLA",
+  "color": "#f2f2ef",
+  "colorName": "Wit",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/123-3D-Filament-PLA-Wit-1-75-mm-1-kg-DFB00235c-DFE20224c-DFP02286c-DFP02287c-DFP14074c-i11622.html"
+   }
+  }
+ },
+ {
+  "id": "123-3d-pla-grijs",
+  "brand": "123-3D",
+  "name": "PLA",
+  "material": "PLA",
+  "color": "#8d9196",
+  "colorName": "Grijs",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/123-3D-Filament-PLA-Grijs-1-75-mm-1-kg-DFB00244c-DFP02248c-DFP02249c-DFP14064c-DFP14102c-i11623.html"
+   }
+  }
+ },
+ {
+  "id": "123-3d-pla-creme-wit",
+  "brand": "123-3D",
+  "name": "PLA",
+  "material": "PLA",
+  "color": "#efe9da",
+  "colorName": "Crème Wit",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/123-3D-Filament-PLA-Creme-Wit-1-75-mm-1-kg-i11643.html"
+   }
+  }
+ },
+ {
+  "id": "123-3d-pla-sneeuwwit",
+  "brand": "123-3D",
+  "name": "PLA",
+  "material": "PLA",
+  "color": "#fbfbfb",
+  "colorName": "Sneeuwwit",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/123-3D-Filament-PLA-Sneeuwwit-1-75-mm-1-kg-DFP16292c-i11627.html"
+   }
+  }
+ },
+ {
+  "id": "123-3d-pla-mat-zwart",
+  "brand": "123-3D",
+  "name": "PLA Mat",
+  "material": "PLA",
+  "color": "#222222",
+  "colorName": "Zwart",
+  "weight": 1000,
+  "matte": true,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/123-3D-Filament-PLA-Mat-Zwart-1-75-mm-1-kg-i11722.html"
+   }
+  }
+ },
+ {
+  "id": "123-3d-pla-tough-wit",
+  "brand": "123-3D",
+  "name": "PLA Tough",
+  "material": "PLA",
+  "color": "#f2f2ef",
+  "colorName": "Wit",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/123-3D-Filament-PLA-Tough-Wit-1-75-mm-1-kg-DFP02282c-DFP02283c-i11667.html"
+   }
+  }
+ },
+ {
+  "id": "123-3d-petg-zwart",
+  "brand": "123-3D",
+  "name": "PETG",
+  "material": "PETG",
+  "color": "#1b1b1b",
+  "colorName": "Zwart",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/123-3D-Filament-PETG-Zwart-1-75-mm-1-kg-DFE20208c-DFP02212c-DFP02213c-DFP14094c-DFP14194c-i11748.html"
+   }
+  }
+ },
+ {
+  "id": "123-3d-petg-wit",
+  "brand": "123-3D",
+  "name": "PETG",
+  "material": "PETG",
+  "color": "#f2f2ef",
+  "colorName": "Wit",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/123-3D-Filament-PETG-Wit-1-75-mm-1-kg-DFE20051c-DFE20216c-DFP02204c-DFP02205c-DFP14096c-i11749.html"
+   }
+  }
+ },
+ {
+  "id": "123-3d-petg-antraciet",
+  "brand": "123-3D",
+  "name": "PETG",
+  "material": "PETG",
+  "color": "#3a3d40",
+  "colorName": "Antraciet",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/123-3D-Filament-PETG-Antraciet-1-75-mm-1-kg-i11753.html"
+   }
+  }
+ },
+ {
+  "id": "123-3d-petg-transparant",
+  "brand": "123-3D",
+  "name": "PETG",
+  "material": "PETG",
+  "color": "#d9e6ea",
+  "colorName": "Transparant",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/123-3D-Filament-PETG-Transparant-1-75-mm-1-kg-DFP02217c-i14990.html"
+   }
+  }
+ },
+ {
+  "id": "123-3d-petg-mat-wit",
+  "brand": "123-3D",
+  "name": "PETG Mat",
+  "material": "PETG",
+  "color": "#f2f2ef",
+  "colorName": "Wit",
+  "weight": 1000,
+  "matte": true,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/123-3D-Filament-PETG-Mat-Wit-1-75-mm-1-kg-DFS10114c-i12168.html"
+   }
+  }
+ },
+ {
+  "id": "123-3d-petg-cf10-zwart",
+  "brand": "123-3D",
+  "name": "PETG CF10 (carbon)",
+  "material": "PETG",
+  "color": "#2a2a2a",
+  "colorName": "Zwart",
+  "weight": 1000,
+  "matte": true,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/123-3D-Filament-PETG-CF10-Zwart-1-75-mm-1-kg-i11758.html"
+   }
+  }
+ },
+ {
+  "id": "polymaker-polylite-petg-black",
+  "brand": "Polymaker",
+  "name": "PolyLite PETG",
+  "material": "PETG",
+  "color": "#1b1b1b",
+  "colorName": "Zwart",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/Polymaker-PolyLite-PETG-filament-1-75-mm-Black-1-kg-70631-DFP14194-PB01001-PM70631-i8684.html"
+   }
+  }
+ },
+ {
+  "id": "polymaker-panchroma-matte-ash-grey",
+  "brand": "Polymaker",
+  "name": "Panchroma PLA Matte",
+  "material": "PLA",
+  "color": "#9a9c9e",
+  "colorName": "Ash Grey",
+  "weight": 1000,
+  "matte": true,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/Polymaker-Panchroma-PLA-Matte-filament-Ash-Grey-1-75-mm-1-kg-CA04014-i11969-t224184.html"
+   }
+  }
+ },
+ {
+  "id": "polymaker-panchroma-matte-fossil-grey",
+  "brand": "Polymaker",
+  "name": "Panchroma PLA Matte",
+  "material": "PLA",
+  "color": "#7c7f82",
+  "colorName": "Fossil Grey",
+  "weight": 1000,
+  "matte": true,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/Polymaker-Panchroma-PLA-Matte-filament-1-75-mm-Fossil-Grey-1-kg-CA04020-i11975.html"
+   }
+  }
+ },
+ {
+  "id": "polymaker-panchroma-matte-wood-brown",
+  "brand": "Polymaker",
+  "name": "Panchroma PLA Matte",
+  "material": "PLA",
+  "color": "#8a5a3b",
+  "colorName": "Wood Brown",
+  "weight": 1000,
+  "matte": true,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/Polymaker-Panchroma-PLA-Matte-filament-Wood-Brown-1-75-mm-1-kg-CA04041-i11996.html"
+   }
+  }
+ },
+ {
+  "id": "polymaker-panchroma-matte-pastel-ice",
+  "brand": "Polymaker",
+  "name": "Panchroma PLA Matte",
+  "material": "PLA",
+  "color": "#bfe0ea",
+  "colorName": "Pastel Ice",
+  "weight": 1000,
+  "matte": true,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/Polymaker-Panchroma-PLA-Matte-filament-1-75-mm-Pastel-Ice-1-kg-CA04031-i11986.html"
+   }
+  }
+ },
+ {
+  "id": "polymaker-polyflex-tpu95hf-black",
+  "brand": "Polymaker",
+  "name": "PolyFlex TPU-95A High Speed",
+  "material": "TPU",
+  "color": "#1b1b1b",
+  "colorName": "Zwart",
+  "weight": 1000,
+  "shore": "95A",
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/Polymaker-PolyFlex-TPU-95A-High-Speed-filament-1-75-mm-Black-1-kg-70295-PD03001-PM70295-i7635.html"
+   }
+  }
+ },
+ {
+  "id": "polymaker-polyflex-tpu95hf-clear",
+  "brand": "Polymaker",
+  "name": "PolyFlex TPU-95A High Speed",
+  "material": "TPU",
+  "color": "#d9e6ea",
+  "colorName": "Transparant",
+  "weight": 1000,
+  "shore": "95A",
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/Polymaker-PolyFlex-TPU-95A-High-Speed-filament-1-75-mm-Clear-1-kg-PD03003-i9928-t104862.html"
+   }
+  }
+ },
+ {
+  "id": "polymaker-polyflex-tpu95-black",
+  "brand": "Polymaker",
+  "name": "PolyFlex TPU-95A",
+  "material": "TPU",
+  "color": "#1b1b1b",
+  "colorName": "Zwart",
+  "weight": 750,
+  "shore": "95A",
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/Polymaker-PolyFlex-TPU-95A-filament-1-75-mm-Black-0-75-kg-70107-PD01001-PM70107-i7633.html"
+   }
+  }
+ },
+ {
+  "id": "esun-petg-solid-black",
+  "brand": "eSUN",
+  "name": "PETG Solid",
+  "material": "PETG",
+  "color": "#1b1b1b",
+  "colorName": "Zwart",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/eSun-PETG-filament-1-75-mm-Solid-Black-1-kg-i4272.html"
+   }
+  }
+ },
+ {
+  "id": "esun-petg-solid-white",
+  "brand": "eSUN",
+  "name": "PETG Solid",
+  "material": "PETG",
+  "color": "#f2f2ef",
+  "colorName": "Wit",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/eSun-PETG-filament-1-75-mm-Solid-White-1-kg-DFE20051-i4279.html"
+   }
+  }
+ },
+ {
+  "id": "esun-petg-natural",
+  "brand": "eSUN",
+  "name": "PETG",
+  "material": "PETG",
+  "color": "#d9e6ea",
+  "colorName": "Naturel",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/eSun-PETG-filament-1-75-mm-Natural-1-kg-PETG175N1-i4273.html"
+   }
+  }
+ },
+ {
+  "id": "esun-epetg-hs-black",
+  "brand": "eSUN",
+  "name": "ePETG+HS",
+  "material": "PETG",
+  "color": "#1b1b1b",
+  "colorName": "Zwart",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/eSUN-ePETG-HS-Zwart-1-75-mm-1-kg-i12886.html"
+   }
+  }
+ },
+ {
+  "id": "esun-epla-st-black",
+  "brand": "eSUN",
+  "name": "ePLA-ST",
+  "material": "PLA",
+  "color": "#1b1b1b",
+  "colorName": "Zwart",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/eSun-ePLA-ST-filament-1-75-mm-Black-1-kg-i9641.html"
+   }
+  }
+ },
+ {
+  "id": "esun-plaplus-grey",
+  "brand": "eSUN",
+  "name": "PLA+",
+  "material": "PLA",
+  "color": "#8d9196",
+  "colorName": "Grijs",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/eSun-PLA-filament-Grijs-1-75-mm-1-kg-PLA175H1-i4317-t43277.html"
+   }
+  }
+ },
+ {
+  "id": "real-pla-white",
+  "brand": "REAL",
+  "name": "PLA",
+  "material": "PLA",
+  "color": "#f2f2ef",
+  "colorName": "Wit",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/REAL-filament-wit-1-75-mm-PLA-1-kg-DFP02287-i10390.html"
+   }
+  }
+ },
+ {
+  "id": "real-petg-black",
+  "brand": "REAL",
+  "name": "PETG",
+  "material": "PETG",
+  "color": "#1b1b1b",
+  "colorName": "Zwart",
+  "weight": 1000,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/REAL-filament-zwart-1-75-mm-PETG-1-kg-i10316-t27058.html"
+   }
+  }
+ },
+ {
+  "id": "colorfabb-varioshore-tpu-black",
+  "brand": "colorFabb",
+  "name": "varioShore TPU",
+  "material": "TPU",
+  "color": "#1b1b1b",
+  "colorName": "Zwart",
+  "weight": 700,
+  "winkels": {
+   "123-3d": {
+    "url": "https://www.123-3d.nl/colorFabb-varioShore-TPU-filament-Zwart-1-75-mm-0-7-kg-i6998.html"
+   }
+  }
  }
 ]
