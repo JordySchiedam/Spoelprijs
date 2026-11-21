@@ -97,7 +97,8 @@ class TestDraai(unittest.TestCase):
     def test_volledige_run(self):
         res = self.run_()
         data = json.loads((self.tmp / "data.json").read_text())
-        self.assertEqual(len(data["products"]), 1)  # kapot product valt weg
+        self.assertEqual(len(data["products"]), 2)  # kapot product blijft staan, zonder prijs
+        self.assertEqual(data["products"][1]["offers"], [])
         offers = {o["shop"]: o for o in data["products"][0]["offers"]}
         self.assertEqual(offers["jake"]["price"], 15.99)
         self.assertTrue(offers["jake"]["url"].startswith("https://www.awin1.com"))
