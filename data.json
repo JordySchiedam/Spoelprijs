@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T23:00:49+01:00",
+ "updated": "2026-11-21T23:33:04+01:00",
  "demo": false,
  "shops": {
   "amazon": {
@@ -77,15 +77,7 @@
    "weight": 1000,
    "matte": true,
    "ean": "6933582309633",
-   "offers": [
-    {
-     "shop": "proshop",
-     "price": 25.24,
-     "stock": true,
-     "url": "https://www.proshop.nl/Filament-3D-printer/Sunlu-PLA-Matte-Filament-White/3502420",
-     "checked": "2026-11-17T23:00:49+01:00"
-    }
-   ]
+   "offers": []
   },
   {
    "id": "sunlu-pla-matte-black",
@@ -156,10 +148,10 @@
    "offers": [
     {
      "shop": "123-3d",
-     "price": 16.99,
+     "price": 13.59,
      "stock": true,
      "url": "https://www.123-3d.nl/Polymaker-PolyTerra-PLA-filament-1-75-mm-Charcoal-Black-1-kg-PM70820-i7605.html",
-     "checked": "2026-11-17T23:00:49+01:00"
+     "checked": "2026-11-21T23:33:04+01:00"
     }
    ]
   },
@@ -176,10 +168,10 @@
    "offers": [
     {
      "shop": "123-3d",
-     "price": 19.95,
+     "price": 15.96,
      "stock": true,
      "url": "https://www.123-3d.nl/Polymaker-Panchroma-PLA-Matte-filament-1-75-mm-Charcoal-Black-1-kg-CA04015-i11970.html",
-     "checked": "2026-11-17T23:00:49+01:00"
+     "checked": "2026-11-21T23:33:04+01:00"
     }
    ]
   },
@@ -220,7 +212,7 @@
      "price": 22.5,
      "stock": true,
      "url": "https://www.123-3d.nl/eSun-PLA-filament-1-75-mm-Black-1-kg-PLA175B1-i4327.html",
-     "checked": "2026-11-17T23:00:49+01:00"
+     "checked": "2026-11-21T23:33:04+01:00"
     }
    ]
   },
@@ -369,15 +361,7 @@
    "colorName": "Groen",
    "weight": 1000,
    "shore": "95A",
-   "offers": [
-    {
-     "shop": "amazon",
-     "price": 26.99,
-     "stock": true,
-     "url": "https://www.amazon.nl/dp/B0BXNYXN8K",
-     "checked": "2026-11-17T23:00:49+01:00"
-    }
-   ]
+   "offers": []
   }
  ]
 }
