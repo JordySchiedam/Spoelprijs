@@ -1,0 +1,75 @@
+{
+  "amazon": {
+    "naam": "Amazon.nl",
+    "type": "handmatig",
+    "affiliate": true,
+    "affiliate_sjabloon": "{url_raw}?tag={tag}",
+    "affiliate_env": { "tag": "AMAZON_TAG" },
+    "max_dagen_handmatig": 1,
+    "verzending": 3.99,
+    "gratis_vanaf": 20,
+    "_opmerking": "Niet scrapen. Prijzen handmatig of later via de Amazon-API. Verzendkosten controleren."
+  },
+  "3djake": {
+    "naam": "3DJake",
+    "type": "feed",
+    "affiliate": true,
+    "feed_env": "AWIN_3DJAKE_FEED_URL",
+    "feed_is_affiliate": true,
+    "kolommen": {
+      "ean": "ean",
+      "id": "merchant_product_id",
+      "naam": "product_name",
+      "prijs": "search_price",
+      "voorraad": "in_stock",
+      "url": "aw_deep_link",
+      "verzending": "delivery_cost"
+    },
+    "verzending": 4.95,
+    "gratis_vanaf": 49,
+    "_opmerking": "Feed-URL staat in je Awin-account onder Toolbox > Create-a-Feed. Verzendkosten controleren."
+  },
+  "fepshop": {
+    "naam": "FEPshop",
+    "type": "feed",
+    "affiliate": true,
+    "actief": false,
+    "feed_env": "DAISYCON_FEPSHOP_FEED_URL",
+    "feed_is_affiliate": true,
+    "kolommen": {
+      "ean": "ean",
+      "id": "sku",
+      "naam": "title",
+      "prijs": "price",
+      "voorraad": "in_stock",
+      "url": "link",
+      "verzending": "delivery_costs"
+    },
+    "verzending": 4.95,
+    "gratis_vanaf": 50,
+    "_opmerking": "Zet actief op true na goedkeuring. Kolomnamen controleren in de Daisycon-feed."
+  },
+  "proshop": {
+    "naam": "Proshop",
+    "type": "html",
+    "affiliate": false,
+    "verzending": 6.99,
+    "gratis_vanaf": null
+  },
+  "123-3d": {
+    "naam": "123-3D",
+    "type": "html",
+    "affiliate": false,
+    "verzending": 4.99,
+    "gratis_vanaf": 50,
+    "_opmerking": "Verzendkosten controleren."
+  },
+  "makerpoint": {
+    "naam": "MakerPoint",
+    "type": "html",
+    "affiliate": false,
+    "verzending": 5.95,
+    "gratis_vanaf": 75,
+    "_opmerking": "Verzendkosten controleren."
+  }
+}

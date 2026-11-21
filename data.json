@@ -1,0 +1,383 @@
+{
+ "updated": "2026-11-17T23:00:49+01:00",
+ "demo": false,
+ "shops": {
+  "amazon": {
+   "name": "Amazon.nl",
+   "affiliate": true,
+   "ship": 3.99,
+   "freeFrom": 20
+  },
+  "3djake": {
+   "name": "3DJake",
+   "affiliate": true,
+   "ship": 4.95,
+   "freeFrom": 49
+  },
+  "proshop": {
+   "name": "Proshop",
+   "affiliate": false,
+   "ship": 6.99,
+   "freeFrom": null
+  },
+  "123-3d": {
+   "name": "123-3D",
+   "affiliate": false,
+   "ship": 4.99,
+   "freeFrom": 50
+  },
+  "makerpoint": {
+   "name": "MakerPoint",
+   "affiliate": false,
+   "ship": 5.95,
+   "freeFrom": 75
+  }
+ },
+ "products": [
+  {
+   "id": "sunlu-plaplus-black",
+   "brand": "SUNLU",
+   "name": "PLA+",
+   "material": "PLA",
+   "color": "#1b1b1b",
+   "colorName": "Zwart",
+   "weight": 1000,
+   "ean": "6933582308674",
+   "offers": []
+  },
+  {
+   "id": "sunlu-plaplus-white",
+   "brand": "SUNLU",
+   "name": "PLA+",
+   "material": "PLA",
+   "color": "#f2f2ef",
+   "colorName": "Wit",
+   "weight": 1000,
+   "ean": "6933582308667",
+   "offers": []
+  },
+  {
+   "id": "sunlu-plaplus-grey",
+   "brand": "SUNLU",
+   "name": "PLA+",
+   "material": "PLA",
+   "color": "#8d9196",
+   "colorName": "Grijs",
+   "weight": 1000,
+   "ean": "6933582308780",
+   "offers": []
+  },
+  {
+   "id": "sunlu-pla-matte-white",
+   "brand": "SUNLU",
+   "name": "PLA Matte",
+   "material": "PLA",
+   "color": "#f4f2ec",
+   "colorName": "Wit",
+   "weight": 1000,
+   "matte": true,
+   "ean": "6933582309633",
+   "offers": [
+    {
+     "shop": "proshop",
+     "price": 25.24,
+     "stock": true,
+     "url": "https://www.proshop.nl/Filament-3D-printer/Sunlu-PLA-Matte-Filament-White/3502420",
+     "checked": "2026-11-17T23:00:49+01:00"
+    }
+   ]
+  },
+  {
+   "id": "sunlu-pla-matte-black",
+   "brand": "SUNLU",
+   "name": "PLA Matte",
+   "material": "PLA",
+   "color": "#222222",
+   "colorName": "Zwart",
+   "weight": 1000,
+   "matte": true,
+   "ean": "6933582309626",
+   "offers": []
+  },
+  {
+   "id": "elegoo-pla-black",
+   "brand": "Elegoo",
+   "name": "PLA",
+   "material": "PLA",
+   "color": "#1b1b1b",
+   "colorName": "Zwart",
+   "weight": 1000,
+   "ean": "6976021762606",
+   "offers": []
+  },
+  {
+   "id": "elegoo-pla-white",
+   "brand": "Elegoo",
+   "name": "PLA",
+   "material": "PLA",
+   "color": "#f2f2ef",
+   "colorName": "Wit",
+   "weight": 1000,
+   "ean": "6976021762613",
+   "offers": []
+  },
+  {
+   "id": "elegoo-plaplus-black",
+   "brand": "Elegoo",
+   "name": "PLA+",
+   "material": "PLA",
+   "color": "#1b1b1b",
+   "colorName": "Zwart",
+   "weight": 1000,
+   "ean": "6976021769261",
+   "offers": []
+  },
+  {
+   "id": "elegoo-rapid-plaplus-black",
+   "brand": "Elegoo",
+   "name": "Rapid PLA+",
+   "material": "PLA",
+   "color": "#1b1b1b",
+   "colorName": "Zwart",
+   "weight": 1000,
+   "ean": "6976021764280",
+   "offers": []
+  },
+  {
+   "id": "polymaker-polyterra-black",
+   "brand": "Polymaker",
+   "name": "PolyTerra PLA",
+   "material": "PLA",
+   "color": "#2b2b2b",
+   "colorName": "Charcoal Black",
+   "weight": 1000,
+   "matte": true,
+   "ean": "6938936708209",
+   "offers": [
+    {
+     "shop": "123-3d",
+     "price": 16.99,
+     "stock": true,
+     "url": "https://www.123-3d.nl/Polymaker-PolyTerra-PLA-filament-1-75-mm-Charcoal-Black-1-kg-PM70820-i7605.html",
+     "checked": "2026-11-17T23:00:49+01:00"
+    }
+   ]
+  },
+  {
+   "id": "polymaker-panchroma-matte-black",
+   "brand": "Polymaker",
+   "name": "Panchroma PLA Matte",
+   "material": "PLA",
+   "color": "#2b2b2b",
+   "colorName": "Charcoal Black",
+   "weight": 1000,
+   "matte": true,
+   "ean": "6938936714927",
+   "offers": [
+    {
+     "shop": "123-3d",
+     "price": 19.95,
+     "stock": true,
+     "url": "https://www.123-3d.nl/Polymaker-Panchroma-PLA-Matte-filament-1-75-mm-Charcoal-Black-1-kg-CA04015-i11970.html",
+     "checked": "2026-11-17T23:00:49+01:00"
+    }
+   ]
+  },
+  {
+   "id": "prusament-pla-galaxy-black",
+   "brand": "Prusament",
+   "name": "PLA",
+   "material": "PLA",
+   "color": "#24212e",
+   "colorName": "Galaxy Black",
+   "weight": 1000,
+   "ean": "8594173675001",
+   "offers": []
+  },
+  {
+   "id": "prusament-pla-jet-black",
+   "brand": "Prusament",
+   "name": "PLA",
+   "material": "PLA",
+   "color": "#151515",
+   "colorName": "Jet Black",
+   "weight": 1000,
+   "ean": "8594173675193",
+   "offers": []
+  },
+  {
+   "id": "esun-plaplus-black",
+   "brand": "eSUN",
+   "name": "PLA+",
+   "material": "PLA",
+   "color": "#1b1b1b",
+   "colorName": "Zwart",
+   "weight": 1000,
+   "ean": "6922572219021",
+   "offers": [
+    {
+     "shop": "123-3d",
+     "price": 22.5,
+     "stock": true,
+     "url": "https://www.123-3d.nl/eSun-PLA-filament-1-75-mm-Black-1-kg-PLA175B1-i4327.html",
+     "checked": "2026-11-17T23:00:49+01:00"
+    }
+   ]
+  },
+  {
+   "id": "3djake-ecopla-black",
+   "brand": "3DJake",
+   "name": "ecoPLA",
+   "material": "PLA",
+   "color": "#1b1b1b",
+   "colorName": "Zwart",
+   "weight": 1000,
+   "ean": "9120043486577",
+   "offers": []
+  },
+  {
+   "id": "3djake-ecopla-white",
+   "brand": "3DJake",
+   "name": "ecoPLA",
+   "material": "PLA",
+   "color": "#f2f2ef",
+   "colorName": "Wit",
+   "weight": 1000,
+   "ean": "9120043486171",
+   "offers": []
+  },
+  {
+   "id": "3djake-ecopla-matt-black",
+   "brand": "3DJake",
+   "name": "ecoPLA Matt",
+   "material": "PLA",
+   "color": "#222222",
+   "colorName": "Zwart",
+   "weight": 1000,
+   "matte": true,
+   "ean": "9120043485464",
+   "offers": []
+  },
+  {
+   "id": "3djake-ecopla-tough-black",
+   "brand": "3DJake",
+   "name": "ecoPLA Tough",
+   "material": "PLA",
+   "color": "#1b1b1b",
+   "colorName": "Zwart",
+   "weight": 1000,
+   "ean": "9120099285391",
+   "offers": []
+  },
+  {
+   "id": "sunlu-petg-black",
+   "brand": "SUNLU",
+   "name": "PETG",
+   "material": "PETG",
+   "color": "#1b1b1b",
+   "colorName": "Zwart",
+   "weight": 1000,
+   "ean": "6933582309763",
+   "offers": []
+  },
+  {
+   "id": "sunlu-petg-white",
+   "brand": "SUNLU",
+   "name": "PETG",
+   "material": "PETG",
+   "color": "#f2f2ef",
+   "colorName": "Wit",
+   "weight": 1000,
+   "ean": "6933582309770",
+   "offers": []
+  },
+  {
+   "id": "sunlu-hs-matte-petg-black",
+   "brand": "SUNLU",
+   "name": "High-Speed Matte PETG",
+   "material": "PETG",
+   "color": "#222222",
+   "colorName": "Zwart",
+   "weight": 1000,
+   "ean": "6933582315290",
+   "offers": []
+  },
+  {
+   "id": "esun-petg-black",
+   "brand": "eSUN",
+   "name": "PETG",
+   "material": "PETG",
+   "color": "#1b1b1b",
+   "colorName": "Zwart",
+   "weight": 1000,
+   "ean": "6922572264083",
+   "offers": []
+  },
+  {
+   "id": "3djake-easypetg-black",
+   "brand": "3DJake",
+   "name": "easyPETG",
+   "material": "PETG",
+   "color": "#1b1b1b",
+   "colorName": "Zwart",
+   "weight": 1000,
+   "ean": "9010707006077",
+   "offers": []
+  },
+  {
+   "id": "sunlu-tpu95-black",
+   "brand": "SUNLU",
+   "name": "TPU 95A",
+   "material": "TPU",
+   "color": "#1b1b1b",
+   "colorName": "Zwart",
+   "weight": 1000,
+   "shore": "95A",
+   "ean": "6933582313869",
+   "offers": []
+  },
+  {
+   "id": "esun-tpu95-black",
+   "brand": "eSUN",
+   "name": "TPU-95A",
+   "material": "TPU",
+   "color": "#1b1b1b",
+   "colorName": "Zwart",
+   "weight": 1000,
+   "shore": "95A",
+   "ean": "6922572277014",
+   "offers": []
+  },
+  {
+   "id": "snapmaker-tpu95-black",
+   "brand": "Snapmaker",
+   "name": "TPU",
+   "material": "TPU",
+   "color": "#1b1b1b",
+   "colorName": "Zwart",
+   "weight": 1000,
+   "shore": "95A",
+   "ean": "6971573440279",
+   "offers": []
+  },
+  {
+   "id": "sunlu-hs-tpu95-green",
+   "brand": "SUNLU",
+   "name": "High Speed TPU 95A",
+   "material": "TPU",
+   "color": "#3c9a4a",
+   "colorName": "Groen",
+   "weight": 1000,
+   "shore": "95A",
+   "offers": [
+    {
+     "shop": "amazon",
+     "price": 26.99,
+     "stock": true,
+     "url": "https://www.amazon.nl/dp/B0BXNYXN8K",
+     "checked": "2026-11-17T23:00:49+01:00"
+    }
+   ]
+  }
+ ]
+}
