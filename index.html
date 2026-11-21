@@ -4,158 +4,193 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spoelprijs</title>
-<meta name="description" content="Vergelijk filamentprijzen bij Nederlandse webshops. Altijd de goedkoopste spoel, inclusief prijs per kilo en verzendkosten.">
+<meta name="description" content="Vergelijk filamentprijzen bij Nederlandse webshops. PLA, PETG en TPU omgerekend naar prijs per kilo, inclusief verzendkosten. Elke ochtend bijgewerkt.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="Spoelprijs: de laagste prijs per kilo filament">
+<meta property="og:description" content="PLA, PETG en TPU vergeleken bij Nederlandse webshops, per kilo en inclusief verzendkosten.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23ec5f1a'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23fff' stroke-width='1.6' stroke-dasharray='2.2 2'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
-/* Layout: smalle kopbalk → filterbalk → lijst met producten, elk uitklapbaar naar alle winkelprijzen */
+/* Layout: kopbalk → hero (stelling + goedkoopste kilo van vandaag) → filterbalk → vergelijkingslijst → uitleg → voettekst.
+   Eén gewaagd element: de hero met fijne 'printlagen' en de grote kiloprijs. De rest blijft rustig en wit. */
 :root {
-  --bg: #f3f4f1;
-  --surface: #ffffff;
-  --ink: #17201d;
-  --muted: #5d6863;
-  --line: #dde1dc;
-  --accent: #3b3fd8;
-  --accent-soft: #e8e9fc;
-  --good: #11784a;
-  --good-soft: #e1f3e9;
+  --bg: #ffffff;
+  --panel: #f6f7f8;
+  --ink: #12161a;
+  --muted: #5f6a72;
+  --line: #e4e7ea;
+  --accent: #ec5f1a;          /* filament-oranje, spaarzaam gebruikt */
+  --accent-ink: #b8430b;
+  --accent-soft: #fdeee5;
+  --good: #0f7a4a;
+  --good-soft: #e5f4ec;
   --warn: #9a5b00;
-  --warn-soft: #fbefd9;
-  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
-  --radius: 10px;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --radius: 12px;
   color-scheme: light;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #111614; --surface: #1a201e; --ink: #e8ece9; --muted: #9aa5a0; --line: #2c3431;
-    --accent: #8f93ff; --accent-soft: #252750; --good: #4fcf8f; --good-soft: #163527;
-    --warn: #f0b45a; --warn-soft: #3a2b12; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #111614; --surface: #1a201e; --ink: #e8ece9; --muted: #9aa5a0; --line: #2c3431;
-  --accent: #8f93ff; --accent-soft: #252750; --good: #4fcf8f; --good-soft: #163527;
-  --warn: #f0b45a; --warn-soft: #3a2b12; color-scheme: dark;
-}
-
 * { box-sizing: border-box; }
 html, body { margin: 0; }
-body {
-  background: var(--bg); color: var(--ink);
-  font-family: var(--font-body); font-size: 15px; line-height: 1.5;
-}
-a { color: var(--accent); }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.sr { position: absolute; left: -9999px; }
 
-/* Kop */
-header.top { border-bottom: 1px solid var(--line); background: var(--surface); }
-header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 14px; padding-bottom: 14px; flex-wrap: wrap; }
-.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
-.brand svg { width: 30px; height: 30px; }
-.brand b { font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; }
-.updated { font-size: 13px; color: var(--muted); }
+/* Kopbalk */
+.top { border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand svg { width: 28px; height: 28px; }
+.brand b { font-family: var(--font-display); font-stretch: 112%; font-weight: 800; font-size: 21px; letter-spacing: -0.02em; }
+.nav { display: flex; align-items: center; gap: 22px; font-size: 14px; }
+.nav a { text-decoration: none; color: var(--muted); }
+.nav a:hover { color: var(--ink); }
+.live { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted); padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px; }
+.live i { width: 7px; height: 7px; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 3px var(--good-soft); }
+@media (max-width: 720px) { .nav a { display: none; } }
 
-.intro { padding: 28px 0 8px; display: grid; gap: 6px; }
-.intro h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 4vw, 36px); line-height: 1.1; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
-.intro p { margin: 0; color: var(--muted); max-width: 62ch; }
+/* Hero */
+.hero { position: relative; border-bottom: 1px solid var(--line); overflow: hidden;
+  background: repeating-linear-gradient(180deg, transparent 0 7px, rgba(18,22,26,.035) 7px 8px); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 48px; align-items: center; padding-top: 56px; padding-bottom: 56px; }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-top: 36px; padding-bottom: 36px; } }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); }
+.hero h1 { font-family: var(--font-display); font-stretch: 118%; font-weight: 850; font-size: clamp(34px, 5.4vw, 60px); line-height: .98; letter-spacing: -0.035em; margin: 14px 0 16px; text-wrap: balance; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero p.lead { font-size: 17px; color: var(--muted); max-width: 46ch; margin: 0 0 26px; }
+.search { width: 100%; display: flex; align-items: center; gap: 0; background: var(--bg); border: 1.5px solid var(--ink); border-radius: 999px; padding: 5px 5px 5px 20px; max-width: 520px; box-shadow: 0 6px 24px -12px rgba(18,22,26,.35); }
+.search svg { flex: none; color: var(--muted); }
+.search input { flex: 1; min-width: 0; border: 0; outline: 0; font: inherit; font-size: 16px; padding: 10px 12px; background: transparent; color: var(--ink); }
+.search button { border: 0; background: var(--ink); color: #fff; font: inherit; font-weight: 600; font-size: 14px; padding: 11px 20px; border-radius: 999px; cursor: pointer; }
+.search button:hover { background: #000; }
+.facts { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 18px; font-size: 14px; color: var(--muted); }
+.facts b { color: var(--ink); font-weight: 600; }
 
-.demo { margin: 16px 0 0; padding: 10px 14px; border-radius: var(--radius); background: var(--warn-soft); color: var(--warn); font-size: 14px; border: 1px solid color-mix(in srgb, var(--warn) 30%, transparent); }
-.demo strong { font-weight: 600; }
+/* Kaart: goedkoopste kilo */
+.deal { background: var(--bg); border: 1px solid var(--line); border-radius: 18px; padding: 24px; box-shadow: 0 24px 48px -28px rgba(18,22,26,.35); }
+.deal .lbl { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.deal .big { display: flex; align-items: baseline; gap: 8px; margin: 10px 0 4px; }
+.deal .big .num { font-size: clamp(44px, 6vw, 60px); font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
+.deal .big .unit { font-size: 16px; color: var(--muted); }
+.deal .what { font-weight: 600; }
+.deal .where { font-size: 14px; color: var(--muted); }
+.deal .cta { margin-top: 18px; }
+.deal ul { list-style: none; margin: 20px 0 0; padding: 16px 0 0; border-top: 1px solid var(--line); display: grid; gap: 10px; }
+.deal li { display: grid; grid-template-columns: 52px minmax(0,1fr) auto; gap: 10px; align-items: baseline; font-size: 14px; cursor: pointer; }
+.deal li:hover .n { text-decoration: underline; }
+.deal li .m { font-weight: 600; font-size: 12px; letter-spacing: .06em; color: var(--muted); }
+.deal li .n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.deal li .num { font-weight: 600; }
 
-/* Samenvatting */
-.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 20px 0; }
-.stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; }
-.stat span { display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
-.stat b { font-family: var(--font-mono); font-size: 20px; font-variant-numeric: tabular-nums; }
-.stat small { display: block; color: var(--muted); font-size: 13px; }
-@media (max-width: 620px) { .stats { grid-template-columns: 1fr; } }
+/* Knoppen */
+.go { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-weight: 600; font-size: 14px; padding: 9px 16px; border-radius: 999px; background: var(--accent); color: #fff; border: 1px solid var(--accent); white-space: nowrap; }
+.go:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+.go.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.go.ghost:hover { border-color: var(--ink); }
+.ad { display: block; font-size: 11px; color: var(--muted); margin-top: 3px; text-align: center; }
 
-/* Filters */
-.filters { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 12px 0; display: grid; gap: 10px; border-bottom: 1px solid var(--line); }
-.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-.search { flex: 1 1 240px; }
-input[type="search"], select {
-  font: inherit; color: var(--ink); background: var(--surface);
-  border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; width: 100%;
-}
-select { width: auto; }
-.chips { display: flex; gap: 6px; flex-wrap: wrap; }
-.chip {
-  font: inherit; font-size: 14px; cursor: pointer; border-radius: 999px; padding: 5px 12px;
-  border: 1px solid var(--line); background: var(--surface); color: var(--ink);
-}
-.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
-.toggle { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); cursor: pointer; }
-.toggle input { width: 16px; height: 16px; accent-color: var(--accent); }
+/* Filterbalk */
+.bar { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.92); backdrop-filter: saturate(1.4) blur(8px); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; gap: 10px 16px; align-items: center; flex-wrap: wrap; padding-top: 12px; padding-bottom: 12px; }
+.seg { display: flex; gap: 4px; padding: 4px; background: var(--panel); border-radius: 999px; flex-wrap: wrap; }
+.seg button { border: 0; background: transparent; font: inherit; font-size: 14px; font-weight: 500; color: var(--muted); padding: 6px 13px; border-radius: 999px; cursor: pointer; display: inline-flex; gap: 6px; align-items: baseline; }
+.seg button small { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--bg); color: var(--ink); box-shadow: 0 1px 3px rgba(18,22,26,.14); }
+.bar .right { margin-left: auto; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+select { font: inherit; font-size: 14px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 8px 32px 8px 14px; appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235f6a72' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; }
+select:hover { border-color: #c9ced3; }
+.switch { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); cursor: pointer; user-select: none; }
+.switch input { appearance: none; width: 34px; height: 20px; border-radius: 999px; background: #cfd5da; position: relative; cursor: pointer; transition: background .15s; margin: 0; }
+.switch input::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .15s; }
+.switch input:checked { background: var(--ink); }
+.switch input:checked::after { transform: translateX(14px); }
+@media (max-width: 720px) { .bar .right { margin-left: 0; } }
 
-/* Producten */
-.count { font-size: 13px; color: var(--muted); margin: 14px 0 8px; }
-.list { display: grid; gap: 10px; padding-bottom: 32px; }
-.item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-.item > button.head {
-  all: unset; box-sizing: border-box; width: 100%; cursor: pointer;
-  display: grid; grid-template-columns: 34px minmax(0, 1fr) auto auto 16px; gap: 14px; align-items: center; padding: 14px 16px;
-}
-.item > button.head:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-.spool { width: 34px; height: 34px; }
+/* Lijst */
+main { padding-bottom: 24px; }
+.listhead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 26px 0 12px; flex-wrap: wrap; }
+.listhead h2 { font-family: var(--font-display); font-stretch: 112%; font-weight: 800; font-size: 22px; letter-spacing: -0.02em; margin: 0; }
+.listhead p { margin: 0; font-size: 14px; color: var(--muted); }
+.list { border-top: 1px solid var(--line); }
+.row { border-bottom: 1px solid var(--line); }
+.row > .head { all: unset; box-sizing: border-box; width: 100%; cursor: pointer; display: grid; grid-template-columns: 40px minmax(0, 1.6fr) minmax(0, 1.4fr) 120px 20px; gap: 18px; align-items: center; padding: 16px 8px; border-radius: 10px; }
+.row > .head:hover { background: var(--panel); }
+.row > .head:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.spool { width: 40px; height: 40px; display: block; }
 .pname { font-weight: 600; line-height: 1.3; }
-.pmeta { font-size: 13px; color: var(--muted); display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-top: 2px; }
-.tag { font-size: 12px; padding: 1px 7px; border-radius: 5px; background: var(--accent-soft); color: var(--accent); font-weight: 500; }
-.best { text-align: right; }
-.best .price { font-family: var(--font-mono); font-size: 19px; font-variant-numeric: tabular-nums; }
-.best .shop { font-size: 13px; color: var(--muted); }
-.perkg { text-align: right; min-width: 82px; }
-.perkg b { font-family: var(--font-mono); font-size: 14px; font-variant-numeric: tabular-nums; display: block; }
-.perkg span { font-size: 12px; color: var(--muted); }
-.save { display: inline-block; font-size: 12px; font-weight: 600; color: var(--good); background: var(--good-soft); padding: 1px 7px; border-radius: 5px; }
-.chev { transition: transform .15s; color: var(--muted); }
-.item.open .chev { transform: rotate(180deg); }
-
-.offers { display: none; border-top: 1px solid var(--line); overflow-x: auto; }
-.item.open .offers { display: block; }
+.pname .rank { font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--accent-ink); background: var(--accent-soft); padding: 1px 6px; border-radius: 4px; margin-left: 6px; vertical-align: 2px; }
+.pmeta { font-size: 13px; color: var(--muted); margin-top: 3px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.tag { font-size: 11px; font-weight: 600; letter-spacing: .04em; padding: 1px 7px; border-radius: 4px; border: 1px solid var(--line); color: var(--ink); }
+.shops { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { display: inline-flex; gap: 6px; align-items: baseline; font-size: 12px; padding: 4px 9px; border-radius: 999px; background: var(--panel); color: var(--muted); white-space: nowrap; }
+.chip .num { color: var(--ink); font-weight: 500; }
+.chip.best { background: var(--good-soft); color: var(--good); }
+.chip.best .num { color: var(--good); font-weight: 600; }
+.chip.out { opacity: .55; text-decoration: line-through; }
+.kg { text-align: right; }
+.kg .num { display: block; font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
+.kg span { font-size: 12px; color: var(--muted); }
+.chev { color: var(--muted); transition: transform .2s; }
+.row.open .chev { transform: rotate(180deg); }
+.detail { display: none; padding: 0 8px 18px 66px; }
+.row.open .detail { display: block; }
+.table { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
-th, td { padding: 9px 16px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
-th { font-size: 12px; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+th, td { padding: 11px 14px; text-align: left; white-space: nowrap; border-bottom: 1px solid var(--line); }
+th { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--panel); }
 tr:last-child td { border-bottom: 0; }
-td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
-th.num { text-align: right; }
-tr.cheapest td { background: var(--good-soft); }
+td.r, th.r { text-align: right; }
+tr.cheapest td { background: #f5fbf8; }
 tr.cheapest td:first-child { box-shadow: inset 3px 0 0 var(--good); }
-.stock { font-size: 12px; }
+.badge { font-size: 11px; font-weight: 600; color: var(--good); background: var(--good-soft); padding: 2px 7px; border-radius: 4px; margin-left: 6px; }
+.stock { font-size: 13px; }
 .stock.in { color: var(--good); }
 .stock.out { color: var(--warn); }
-.go {
-  display: inline-block; text-decoration: none; font-weight: 600; font-size: 13px;
-  padding: 6px 12px; border-radius: 7px; background: var(--accent); color: #fff;
-}
-.go.plain { background: transparent; color: var(--accent); border: 1px solid var(--line); }
-.ad { font-size: 11px; color: var(--muted); display: block; }
-
-@media (max-width: 620px) {
-  .item > button.head { grid-template-columns: 30px minmax(0, 1fr) auto; }
-  .perkg { display: none; }
+.old { display: block; font-size: 11px; color: var(--muted); }
+@media (max-width: 760px) {
+  .row > .head { grid-template-columns: 34px minmax(0, 1fr) auto; gap: 12px; padding: 14px 4px; }
+  .spool { width: 34px; height: 34px; }
+  .row .shops { grid-column: 2 / 4; grid-row: 2; }
   .chev { display: none; }
+  .detail { padding: 0 4px 16px; }
 }
+.more { display: flex; justify-content: center; padding: 22px 0 4px; }
+.more button, .soonbtn { font: inherit; font-weight: 600; font-size: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 10px 20px; cursor: pointer; color: var(--ink); }
+.more button:hover, .soonbtn:hover { border-color: var(--ink); }
+.soon { margin-top: 34px; }
+.soonbtn { display: inline-flex; gap: 10px; align-items: center; color: var(--muted); font-weight: 500; }
+.soonlist { display: none; margin-top: 14px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 8px; }
+.soon.open .soonlist { display: grid; }
+.soonitem { display: flex; gap: 10px; align-items: center; padding: 10px 12px; border: 1px dashed var(--line); border-radius: 10px; font-size: 13px; color: var(--muted); }
+.soonitem .spool { width: 24px; height: 24px; }
+.soonitem b { color: var(--ink); font-weight: 500; }
+.empty { padding: 40px 20px; text-align: center; color: var(--muted); border-bottom: 1px solid var(--line); }
+.demo { margin: 18px 0 0; padding: 10px 14px; border-radius: 10px; background: #fff7e6; color: var(--warn); font-size: 14px; border: 1px solid #f3dfb6; }
 
-/* Filamenten zonder prijs: rustiger, niet uitklapbaar */
-.soon { font-family: var(--font-display); font-weight: 600; font-size: 17px; margin: 18px 0 2px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
-.soon span { font-family: var(--font-body); font-weight: 400; font-size: 13px; color: var(--muted); }
-.item.none { background: transparent; border-style: dashed; }
-.item.none .head { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 10px 16px; }
-.item.none .pname { color: var(--muted); }
-@media (max-width: 620px) { .item.none .head { grid-template-columns: 30px minmax(0, 1fr) auto; } }
+/* Uitleg */
+.how { border-top: 1px solid var(--line); margin-top: 56px; padding: 48px 0; background: var(--panel); }
+.how h2 { font-family: var(--font-display); font-stretch: 112%; font-weight: 800; font-size: 26px; letter-spacing: -0.02em; margin: 0 0 24px; }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+.step { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+.step .n { font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--accent-ink); }
+.step h3 { margin: 8px 0 6px; font-size: 16px; }
+.step p { margin: 0; color: var(--muted); font-size: 14px; }
 
-.empty { padding: 32px; text-align: center; color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: var(--radius); }
-
-footer { border-top: 1px solid var(--line); background: var(--surface); font-size: 13px; color: var(--muted); }
-footer .wrap { padding-top: 20px; padding-bottom: 28px; display: grid; gap: 8px; }
-footer p { margin: 0; max-width: 72ch; }
-
-@media (prefers-reduced-motion: reduce) { .chev { transition: none; } }
+footer { border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+footer .wrap { padding-top: 28px; padding-bottom: 36px; display: grid; grid-template-columns: minmax(0,2fr) minmax(0,1fr); gap: 24px; }
+@media (max-width: 760px) { footer .wrap { grid-template-columns: 1fr; } }
+footer p { margin: 0 0 8px; max-width: 70ch; }
+footer strong { color: var(--ink); font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
 <body>
@@ -163,65 +198,92 @@ footer p { margin: 0; max-width: 72ch; }
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#" aria-label="Spoelprijs, naar boven">
-      <svg viewBox="0 0 32 32" aria-hidden="true">
-        <circle cx="16" cy="16" r="14" fill="var(--accent)"/>
-        <circle cx="16" cy="16" r="9.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-dasharray="2.4 2.2"/>
-        <circle cx="16" cy="16" r="4" fill="var(--surface)"/>
-      </svg>
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#ec5f1a"/><circle cx="16" cy="16" r="10" fill="none" stroke="#fff" stroke-width="1.6" stroke-dasharray="2.2 2"/><circle cx="16" cy="16" r="4.5" fill="#fff"/></svg>
       <b>Spoelprijs</b>
     </a>
-    <span class="updated" id="updated"></span>
+    <nav class="nav" aria-label="Hoofdmenu">
+      <a href="#vergelijk">Vergelijken</a>
+      <a href="#hoe-het-werkt">Hoe het werkt</a>
+      <span class="live" id="live"><i></i><span>Bijgewerkt</span></span>
+    </nav>
   </div>
 </header>
 
-<main class="wrap">
-  <section class="intro">
-    <h1>Altijd de goedkoopste spoel filament</h1>
-    <p>We vergelijken filamentprijzen bij Nederlandse webshops en rekenen alles om naar prijs per kilo. Zo zie je in één oogopslag waar je het voordeligst koopt.</p>
-    <div class="demo" id="demo" role="note"><strong>Voorbeeldprijzen.</strong> Deze versie draait op testdata. De echte prijzen komen uit de productfeeds en de prijsscraper zodra die gekoppeld zijn.</div>
-  </section>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Prijsvergelijker voor 3D-printfilament</div>
+      <h1>Elke spoel. De laagste prijs <em>per kilo.</em></h1>
+      <p class="lead">We vergelijken elke ochtend PLA, PETG en TPU bij Nederlandse webshops en rekenen alles om naar prijs per kilo, inclusief verzendkosten.</p>
+      <form class="search" id="zoekform" role="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <label for="q" class="sr">Zoek filament</label>
+        <input id="q" type="search" placeholder="Zoek op merk, kleur of type, bijv. ‘sunlu zwart’" autocomplete="off">
+        <button type="submit">Zoeken</button>
+      </form>
+      <div class="facts" id="facts"></div>
+      <div class="demo" id="demo" hidden><strong>Voorbeeldprijzen.</strong> Deze pagina toont testdata; echte prijzen verschijnen zodra de prijzenmotor heeft gedraaid.</div>
+    </div>
+    <aside class="deal" id="deal" aria-label="Goedkoopste kilo van vandaag"></aside>
+  </div>
+</section>
 
-  <section class="stats" aria-label="Samenvatting">
-    <div class="stat"><span>Goedkoopste PLA</span><b id="s-pla">–</b><small id="s-pla-where"></small></div>
-    <div class="stat"><span>Goedkoopste PETG</span><b id="s-petg">–</b><small id="s-petg-where"></small></div>
-    <div class="stat"><span>Goedkoopste TPU</span><b id="s-tpu">–</b><small id="s-tpu-where"></small></div>
-  </section>
-
-  <section class="filters" aria-label="Filters">
-    <div class="row">
-      <div class="search">
-        <label for="q" class="ad" style="position:absolute;left:-9999px">Zoek filament</label>
-        <input type="search" id="q" placeholder="Zoek op merk, kleur of type, bijv. ‘sunlu zwart’">
-      </div>
-      <label for="brand" style="position:absolute;left:-9999px">Merk</label>
+<div class="bar" id="vergelijk">
+  <div class="wrap">
+    <div class="seg" id="seg" role="group" aria-label="Materiaal"></div>
+    <div class="right">
+      <label for="brand" class="sr">Merk</label>
       <select id="brand"><option value="">Alle merken</option></select>
-      <label for="sort" style="position:absolute;left:-9999px">Sorteren</label>
+      <label for="sort" class="sr">Sorteren</label>
       <select id="sort">
         <option value="kg">Laagste prijs per kg</option>
         <option value="price">Laagste prijs</option>
         <option value="save">Grootste besparing</option>
         <option value="name">Naam A–Z</option>
       </select>
+      <label class="switch" for="ship"><input type="checkbox" id="ship" checked> Incl. verzending</label>
     </div>
-    <div class="row">
-      <div class="chips" id="chips" role="group" aria-label="Materiaal"></div>
-      <label class="toggle" for="ship"><input type="checkbox" id="ship" checked> Inclusief verzendkosten</label>
-    </div>
-  </section>
+  </div>
+</div>
 
-  <p class="count" id="count" aria-live="polite"></p>
-  <section class="list" id="list"></section>
+<main class="wrap">
+  <div class="listhead">
+    <h2 id="titel">Alle filamenten</h2>
+    <p id="count" aria-live="polite"></p>
+  </div>
+  <div class="list" id="list"></div>
+  <div class="more" id="more" hidden><button type="button" id="morebtn">Toon meer filamenten</button></div>
+  <section class="soon" id="soon" hidden>
+    <button type="button" class="soonbtn" id="soonbtn" aria-expanded="false"></button>
+    <div class="soonlist" id="soonlist"></div>
+  </section>
 </main>
+
+<section class="how" id="hoe-het-werkt">
+  <div class="wrap">
+    <h2>Hoe Spoelprijs werkt</h2>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h3>Elke ochtend nieuwe prijzen</h3><p>We halen dagelijks de actuele prijzen en voorraad op bij Nederlandse en Europese filamentwinkels.</p></div>
+      <div class="step"><div class="n">02</div><h3>Eerlijk vergeleken per kilo</h3><p>Een spoel van 750 gram en een bundel van 4 kilo zijn zo direct te vergelijken. Verzendkosten tellen mee.</p></div>
+      <div class="step"><div class="n">03</div><h3>Altijd gesorteerd op prijs</h3><p>De volgorde hangt nooit af van wat wij eraan verdienen. De goedkoopste winkel staat altijd bovenaan.</p></div>
+    </div>
+  </div>
+</section>
 
 <footer>
   <div class="wrap">
-    <p><strong>Hoe we verdienen:</strong> sommige links op Spoelprijs zijn affiliate-links (gemarkeerd met ‘advertentielink’). Koop je via zo’n link, dan krijgen wij een kleine commissie van de winkel. Jij betaalt niets extra, en het heeft geen invloed op de volgorde: we sorteren altijd op prijs.</p>
-    <p>Prijzen worden automatisch opgehaald en kunnen afwijken van de prijs in de winkel. De prijs op de site van de winkel is leidend.</p>
-    <p>© <span id="year"></span> Spoelprijs · een project van The IT Assistant</p>
+    <div>
+      <p><strong>Hoe we verdienen.</strong> Sommige links zijn affiliate-links, gemarkeerd met ‘advertentielink’. Koop je via zo’n link, dan krijgen wij een kleine commissie van de winkel. Jij betaalt niets extra en het heeft geen invloed op de volgorde.</p>
+      <p>Prijzen worden automatisch opgehaald en kunnen afwijken. De prijs op de site van de winkel is leidend.</p>
+    </div>
+    <div>
+      <p><strong>Spoelprijs</strong><br>Een project van The IT Assistant</p>
+      <p>© <span id="year"></span></p>
+    </div>
   </div>
 </footer>
 
-<!-- Data: wordt later vervangen door data.json uit de feeds en scraper -->
+<!-- Testdata: alleen gebruikt als data.json ontbreekt -->
 <script type="application/json" id="data">
 {
   "updated": "2026-11-17T21:00:00+01:00",
@@ -268,7 +330,6 @@ footer p { margin: 0; max-width: 72ch; }
 </script>
 
 <script>
-// data.json komt van de prijzenmotor; lukt dat niet, dan tonen we de voorbeelddata hierboven
 (function laad() {
   var inline = function () { start(JSON.parse(document.getElementById("data").textContent)); };
   if (!window.fetch || location.protocol === "file:") return inline();
@@ -276,191 +337,173 @@ footer p { margin: 0; max-width: 72ch; }
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (d) {
       if (!d.products || !d.products.length) throw new Error("leeg");
-      // Gaat het tonen van echte data mis, laat dan een fout zien in plaats van stil de testdata te tonen
       try { start(d); } catch (e) {
         console.error(e);
         document.getElementById("list").innerHTML = '<div class="empty">De prijzen konden niet worden getoond: ' + String(e.message || e) + '. Ververs de pagina met Ctrl+F5.</div>';
       }
     })
-    .catch(inline);  // alleen als data.json ontbreekt of onleesbaar is
+    .catch(inline);
 })();
 
 function start(data) {
-  // ===== Instellingen: vul hier je affiliate-gegevens in zodra je bent goedgekeurd =====
-  var AFFILIATE = {
-    amazon:  function (url) { return addParam(url, "tag", "JOUWTAG-21"); },   // Amazon PartnerNet tracking-ID
-    "3djake": function (url) { return url; },  // later: Awin-deeplink, bijv. https://www.awin1.com/cread.php?awinmid=...&awinaffid=...&ued=URL
-    fepshop: function (url) { return url; }    // later: Daisycon-deeplink
-  };
+  // Terugval-links als de prijzenmotor geen link meegeeft
   var SEARCH = {
-    amazon:     "https://www.amazon.nl/s?k=",
-    "3djake":   "https://www.3djake.nl/search?keywords=",
-    fepshop:    "https://www.fepshop.nl/zoeken?q=",
-    "123-3d":   "https://www.123-3d.nl/catalogsearch/result/?q=",
-    proshop:    "https://www.proshop.nl/?s=",
-    makerpoint: "https://www.makerpoint.nl/nl-nl/search/?q="
+    amazon: "https://www.amazon.nl/s?k=", "3djake": "https://www.3djake.nl/search?keywords=",
+    fepshop: "https://www.fepshop.nl/zoeken?q=", "123-3d": "https://www.123-3d.nl/catalogsearch/result/?q=",
+    proshop: "https://www.proshop.nl/?s=", makerpoint: "https://www.makerpoint.nl/nl-nl/search/?q="
   };
-
-  function addParam(url, k, v) { return url + (url.indexOf("?") > -1 ? "&" : "?") + k + "=" + encodeURIComponent(v); }
-
+  var PAGINA = 30;
   var shops = data.shops;
   var eur = new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR" });
-  var state = { q: "", brand: "", sort: "kg", mat: "Alles", ship: true, open: {} };
+  var state = { q: "", brand: "", sort: "kg", mat: "Alles", ship: true, open: {}, toon: PAGINA };
+  try { var s = JSON.parse(localStorage.getItem("spoelprijs-filters") || "null"); if (s) { state.sort = s.sort || state.sort; state.ship = s.ship !== false; } } catch (e) {}
 
-  try { var saved = JSON.parse(localStorage.getItem("spoelprijs-filters") || "null"); if (saved) { state.sort = saved.sort || state.sort; state.ship = saved.ship !== false; } } catch (e) {}
-
-  function total(o) {
-    var s = shops[o.shop];
-    if (!state.ship || !s) return o.price;
-    var free = s.freeFrom != null && o.price >= s.freeFrom;
-    return o.price + (free ? 0 : s.ship);
-  }
-  function link(p, o) {
-    if (o.url) return o.url; // de prijzenmotor levert links met affiliate-code al mee
-    var url = (SEARCH[o.shop] || "#") + encodeURIComponent(p.brand + " " + p.name + " " + p.colorName);
-    var fn = AFFILIATE[o.shop];
-    return shops[o.shop].affiliate && fn ? fn(url) : url;
-  }
+  function $(id) { return document.getElementById(id); }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function shopNaam(k) { return (shops[k] && shops[k].name) || k; }
+  function verzend(o) { var s = shops[o.shop] || {}; return (s.freeFrom != null && o.price >= s.freeFrom) ? 0 : (s.ship || 0); }
+  function total(o) { return o.price + (state.ship ? verzend(o) : 0); }
+  function link(p, o) { return o.url || ((SEARCH[o.shop] || "#") + encodeURIComponent(p.brand + " " + p.name + " " + (p.colorName || ""))); }
   function analyse(p) {
-    if (!p.offers || !p.offers.length) return { offers: [], best: null, perKg: Infinity, save: 0, none: true };
-    var offers = p.offers.slice().sort(function (a, b) {
-      if (a.stock !== b.stock) return a.stock ? -1 : 1;
-      return total(a) - total(b);
-    });
-    var best = offers[0];
+    if (!p.offers || !p.offers.length) return { offers: [], none: true, perKg: Infinity, save: 0 };
+    var offers = p.offers.slice().sort(function (a, b) { return a.stock !== b.stock ? (a.stock ? -1 : 1) : total(a) - total(b); });
     var inStock = offers.filter(function (o) { return o.stock; });
-    var hi = Math.max.apply(null, inStock.map(total));
+    var best = offers[0];
+    var hi = inStock.length ? Math.max.apply(null, inStock.map(total)) : 0;
     return { offers: offers, best: best, perKg: total(best) / (p.weight / 1000), save: inStock.length > 1 ? hi - total(best) : 0 };
   }
   function matOf(p) { return p.matte ? "Mat" : p.material; }
-
-  // Merken en materialen vullen
-  var brands = Array.from(new Set(data.products.map(function (p) { return p.brand; }))).sort();
-  var brandSel = document.getElementById("brand");
-  brands.forEach(function (b) { var o = document.createElement("option"); o.value = b; o.textContent = b; brandSel.appendChild(o); });
-  var mats = ["Alles", "PLA", "PETG", "TPU", "Mat"];
-  var chips = document.getElementById("chips");
-  mats.forEach(function (m) {
-    var b = document.createElement("button");
-    b.type = "button"; b.className = "chip"; b.textContent = m === "Mat" ? "Matte PLA" : m; b.dataset.mat = m;
-    b.addEventListener("click", function () { state.mat = m; render(); });
-    chips.appendChild(b);
-  });
-
-  document.getElementById("q").addEventListener("input", function (e) { state.q = e.target.value; render(); });
-  brandSel.addEventListener("change", function (e) { state.brand = e.target.value; render(); });
-  var sortSel = document.getElementById("sort"); sortSel.value = state.sort;
-  sortSel.addEventListener("change", function (e) { state.sort = e.target.value; persist(); render(); });
-  var shipBox = document.getElementById("ship"); shipBox.checked = state.ship;
-  shipBox.addEventListener("change", function (e) { state.ship = e.target.checked; persist(); render(); });
-  function persist() { try { localStorage.setItem("spoelprijs-filters", JSON.stringify({ sort: state.sort, ship: state.ship })); } catch (e) {} }
-
-  function spool(color) {
-    return '<svg class="spool" viewBox="0 0 34 34" aria-hidden="true">' +
-      '<circle cx="17" cy="17" r="15.5" fill="' + color + '" stroke="var(--muted)" stroke-opacity=".55" stroke-width="1.2"/>' +
-      '<circle cx="17" cy="17" r="11" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1" stroke-dasharray="2 2"/>' +
-      '<circle cx="17" cy="17" r="5" fill="var(--surface)" stroke="var(--line)"/></svg>';
+  function past(p, mat) { return mat === "Alles" || p.material === mat || (mat === "Mat" && p.matte); }
+  function spool(color, cls) {
+    return '<svg class="' + (cls || "spool") + '" viewBox="0 0 40 40" aria-hidden="true">' +
+      '<circle cx="20" cy="20" r="19" fill="' + esc(color) + '"/><circle cx="20" cy="20" r="19" fill="none" stroke="rgba(18,22,26,.18)"/>' +
+      '<circle cx="20" cy="20" r="13.5" fill="none" stroke="rgba(255,255,255,.45)" stroke-dasharray="2 2"/>' +
+      '<circle cx="20" cy="20" r="13.5" fill="none" stroke="rgba(0,0,0,.12)" stroke-dasharray="2 2" stroke-dashoffset="2"/>' +
+      '<circle cx="20" cy="20" r="6" fill="#fff" stroke="rgba(18,22,26,.18)"/></svg>';
   }
-  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function gewicht(w) { var kg = w / 1000; return kg >= 1 ? kg.toLocaleString("nl-NL") + " kg" : w + " g"; }
 
-  function stats() {
-    [["PLA", "pla"], ["PETG", "petg"], ["TPU", "tpu"]].forEach(function (pair) {
-      var best = null;
-      data.products.filter(function (p) { return p.material === pair[0]; }).forEach(function (p) {
-        var a = analyse(p); if (!a.none && a.best.stock &&(!best || a.perKg < best.a.perKg)) best = { p: p, a: a };
+  var alle = data.products.map(function (p) { return { p: p, a: analyse(p) }; });
+  function herbereken() { alle.forEach(function (r) { r.a = analyse(r.p); }); }
+
+  // Hero: kerncijfers en goedkoopste kilo
+  function hero() {
+    var met = alle.filter(function (r) { return !r.a.none && r.a.best.stock; });
+    var winkels = {}; met.forEach(function (r) { r.a.offers.forEach(function (o) { winkels[o.shop] = 1; }); });
+    $("facts").innerHTML = '<span><b>' + met.length + '</b> filamenten met prijs</span><span><b>' + Object.keys(winkels).length + '</b> ' + (Object.keys(winkels).length === 1 ? 'winkel' : 'winkels') + '</span><span>Prijzen <b>incl. verzending</b></span>';
+    var top = met.slice().sort(function (x, y) { return x.a.perKg - y.a.perKg; })[0];
+    if (!top) { $("deal").hidden = true; return; }
+    var perMat = ["PLA", "PETG", "TPU"].map(function (m) {
+      var b = met.filter(function (r) { return r.p.material === m; }).sort(function (x, y) { return x.a.perKg - y.a.perKg; })[0];
+      return b ? '<li data-id="' + esc(b.p.id) + '" data-mat="' + m + '"><span class="m">' + m + '</span><span class="n">' + esc(b.p.brand + " " + b.p.name) + '</span><span class="num">' + eur.format(b.a.perKg) + '</span></li>' : "";
+    }).join("");
+    var s = shops[top.a.best.shop] || {};
+    $("deal").innerHTML = '<div class="lbl">Goedkoopste kilo van vandaag</div>' +
+      '<div class="big"><span class="num">' + eur.format(top.a.perKg) + '</span><span class="unit">/ kg</span></div>' +
+      '<div class="what">' + esc(top.p.brand + " " + top.p.name) + ' · ' + esc(top.p.colorName) + '</div>' +
+      '<div class="where">bij ' + esc(shopNaam(top.a.best.shop)) + ' · ' + gewicht(top.p.weight) + '</div>' +
+      '<div class="cta"><a class="go" href="' + esc(link(top.p, top.a.best)) + '" target="_blank" rel="' + (s.affiliate ? "sponsored nofollow noopener" : "nofollow noopener") + '">Bekijk deal <span aria-hidden="true">→</span></a>' + (s.affiliate ? '<span class="ad" style="text-align:left">advertentielink</span>' : '') + '</div>' +
+      '<ul aria-label="Goedkoopste per materiaal">' + perMat + '</ul>';
+    Array.prototype.forEach.call($("deal").querySelectorAll("li"), function (li) {
+      li.addEventListener("click", function () {
+        state.mat = li.dataset.mat; state.q = ""; $("q").value = ""; state.open = {}; state.open[li.dataset.id] = true; state.toon = PAGINA; render();
+        $("vergelijk").scrollIntoView({ behavior: "smooth" });
       });
-      if (!best) return;
-      document.getElementById("s-" + pair[1]).textContent = eur.format(best.a.perKg) + " /kg";
-      document.getElementById("s-" + pair[1] + "-where").textContent = best.p.brand + " " + best.p.name + " bij " + shops[best.a.best.shop].name;
     });
   }
 
-  function render() {
-    Array.prototype.forEach.call(chips.children, function (c) { c.setAttribute("aria-pressed", String(c.dataset.mat === state.mat)); });
-    var words = state.q.toLowerCase().split(/\s+/).filter(Boolean);
-    var rows = data.products.filter(function (p) {
-      if (state.brand && p.brand !== state.brand) return false;
-      if (state.mat !== "Alles" && matOf(p) !== state.mat && !(state.mat === "PLA" && p.material === "PLA")) return false;
-      var hay = (p.brand + " " + p.name + " " + p.material + " " + p.colorName + (p.matte ? " matte mat" : "")).toLowerCase();
-      return words.every(function (w) { return hay.indexOf(w) > -1; });
-    }).map(function (p) { return { p: p, a: analyse(p) }; });
+  // Filters
+  var mats = [["Alles", "Alles"], ["PLA", "PLA"], ["PETG", "PETG"], ["TPU", "TPU"], ["Mat", "Mat"]];
+  mats.forEach(function (m) {
+    var b = document.createElement("button"); b.type = "button"; b.dataset.mat = m[0];
+    b.addEventListener("click", function () { state.mat = m[0]; state.toon = PAGINA; render(); });
+    $("seg").appendChild(b);
+  });
+  var brands = Array.from(new Set(data.products.map(function (p) { return p.brand; }))).sort(function (a, b) { return a.localeCompare(b); });
+  brands.forEach(function (b) { var o = document.createElement("option"); o.value = b; o.textContent = b; $("brand").appendChild(o); });
+  $("q").addEventListener("input", function (e) { state.q = e.target.value; state.toon = PAGINA; render(); });
+  $("zoekform").addEventListener("submit", function (e) { e.preventDefault(); $("vergelijk").scrollIntoView({ behavior: "smooth" }); });
+  $("brand").addEventListener("change", function (e) { state.brand = e.target.value; state.toon = PAGINA; render(); });
+  $("sort").value = state.sort;
+  $("sort").addEventListener("change", function (e) { state.sort = e.target.value; bewaar(); render(); });
+  $("ship").checked = state.ship;
+  $("ship").addEventListener("change", function (e) { state.ship = e.target.checked; bewaar(); herbereken(); hero(); render(); });
+  $("morebtn").addEventListener("click", function () { state.toon += PAGINA; render(); });
+  $("soonbtn").addEventListener("click", function () { var s = $("soon"); s.classList.toggle("open"); $("soonbtn").setAttribute("aria-expanded", s.classList.contains("open")); });
+  function bewaar() { try { localStorage.setItem("spoelprijs-filters", JSON.stringify({ sort: state.sort, ship: state.ship })); } catch (e) {} }
 
-    rows.sort(function (x, y) {
-      if (x.a.none !== y.a.none) return x.a.none ? 1 : -1;  // zonder prijs altijd onderaan
-      if (x.a.none) return (x.p.brand + x.p.name + x.p.colorName).localeCompare(y.p.brand + y.p.name + y.p.colorName);
+  function zoekPast(p) {
+    var woorden = state.q.toLowerCase().split(/\s+/).filter(Boolean);
+    var hooi = (p.brand + " " + p.name + " " + p.material + " " + (p.colorName || "") + (p.matte ? " mat matte" : "")).toLowerCase();
+    return woorden.every(function (w) { return hooi.indexOf(w) > -1; });
+  }
+
+  function rij(r, rang) {
+    var p = r.p, a = r.a, open = state.open[p.id], kg = p.weight / 1000;
+    var meta = '<span class="tag">' + esc(p.material) + (p.matte ? " · MAT" : "") + '</span>' + (p.shore ? '<span class="tag">' + esc(p.shore) + '</span>' : '') +
+      '<span>' + esc(p.colorName) + ' · ' + gewicht(p.weight) + '</span>';
+    var chips = a.offers.slice(0, 3).map(function (o, i) {
+      return '<span class="chip' + (i === 0 && o.stock ? " best" : "") + (o.stock ? "" : " out") + '">' + esc(shopNaam(o.shop)) + ' <span class="num">' + eur.format(total(o)) + '</span></span>';
+    }).join("") + (a.offers.length > 3 ? '<span class="chip">+' + (a.offers.length - 3) + '</span>' : '');
+    var tabel = '<div class="table"><table><thead><tr><th>Winkel</th><th>Voorraad</th><th class="r">Prijs</th><th class="r">Verzending</th><th class="r">Totaal</th><th class="r">Per kg</th><th></th></tr></thead><tbody>' +
+      a.offers.map(function (o, i) {
+        var s = shops[o.shop] || {}, v = verzend(o), best = i === 0 && o.stock;
+        return '<tr class="' + (best ? "cheapest" : "") + '"><td><strong>' + esc(shopNaam(o.shop)) + '</strong>' + (best ? '<span class="badge">goedkoopst</span>' : '') + '</td>' +
+          '<td><span class="stock ' + (o.stock ? "in" : "out") + '">' + (o.stock ? "Op voorraad" : "Niet op voorraad") + '</span>' +
+          (o.stale ? '<span class="old">prijs van ' + new Date(o.checked).toLocaleDateString("nl-NL", { day: "numeric", month: "short" }) + '</span>' : '') + '</td>' +
+          '<td class="r num">' + eur.format(o.price) + '</td><td class="r num">' + (v ? eur.format(v) : "gratis") + '</td>' +
+          '<td class="r num"><strong>' + eur.format(o.price + v) + '</strong></td><td class="r num">' + eur.format(total(o) / kg) + '</td>' +
+          '<td><a class="go' + (best ? "" : " ghost") + '" href="' + esc(link(p, o)) + '" target="_blank" rel="' + (s.affiliate ? "sponsored nofollow noopener" : "nofollow noopener") + '">Naar winkel</a>' +
+          (s.affiliate ? '<span class="ad">advertentielink</span>' : '') + '</td></tr>';
+      }).join("") + '</tbody></table></div>';
+    return '<article class="row' + (open ? " open" : "") + '" data-id="' + esc(p.id) + '">' +
+      '<button type="button" class="head" aria-expanded="' + (open ? "true" : "false") + '">' + spool(p.color) +
+      '<div><div class="pname">' + esc(p.brand) + ' ' + esc(p.name) + (rang === 0 && state.sort === "kg" ? '<span class="rank">#1</span>' : '') + '</div><div class="pmeta">' + meta + '</div></div>' +
+      '<div class="shops">' + chips + '</div>' +
+      '<div class="kg"><span class="num">' + eur.format(a.perKg) + '</span><span>per kg</span></div>' +
+      '<svg class="chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>' +
+      '</button><div class="detail">' + tabel + '</div></article>';
+  }
+
+  function render() {
+    // Materiaalknoppen met aantallen
+    Array.prototype.forEach.call($("seg").children, function (b) {
+      var m = b.dataset.mat;
+      var n = alle.filter(function (r) { return !r.a.none && past(r.p, m) && (!state.brand || r.p.brand === state.brand) && zoekPast(r.p); }).length;
+      b.innerHTML = (m === "Mat" ? "Mat" : m) + ' <small>' + n + '</small>';
+      b.setAttribute("aria-pressed", String(m === state.mat));
+    });
+    var gefilterd = alle.filter(function (r) { return past(r.p, state.mat) && (!state.brand || r.p.brand === state.brand) && zoekPast(r.p); });
+    var met = gefilterd.filter(function (r) { return !r.a.none; });
+    var zonder = gefilterd.filter(function (r) { return r.a.none; });
+    met.sort(function (x, y) {
       if (state.sort === "price") return total(x.a.best) - total(y.a.best);
       if (state.sort === "save") return y.a.save - x.a.save;
       if (state.sort === "name") return (x.p.brand + x.p.name).localeCompare(y.p.brand + y.p.name);
       return x.a.perKg - y.a.perKg;
     });
-
-    var zonder = rows.filter(function (r) { return r.a.none; }).length;
-    var met = rows.length - zonder;
-    document.getElementById("count").textContent = met + (met === 1 ? " filament" : " filamenten") + " met prijs" +
-      (zonder ? " · " + zonder + " nog zonder prijs" : "") +
-      (state.ship ? " · inclusief verzendkosten" : " · exclusief verzendkosten");
-
-    var list = document.getElementById("list");
-    if (!rows.length) { list.innerHTML = '<div class="empty">Geen filament gevonden. Probeer een andere zoekterm of zet het materiaalfilter op ‘Alles’.</div>'; return; }
-
-    var kopGezet = false;
-    list.innerHTML = rows.map(function (r) {
-      var p = r.p, a = r.a, open = state.open[p.id];
-      var kg = p.weight / 1000;
-      var meta = '<span class="tag">' + esc(p.material) + (p.matte ? " mat" : "") + '</span>' +
-        (p.shore ? '<span class="tag">Shore ' + esc(p.shore) + '</span>' : '') +
-        '<span>' + esc(p.colorName) + ' · ' + (kg >= 1 ? kg.toLocaleString("nl-NL") + ' kg' : p.weight + ' g') + ' · 1,75 mm</span>' +
-        (a.save >= 0.5 ? '<span class="save">tot ' + eur.format(a.save) + ' goedkoper</span>' : '');
-      if (a.none) {
-        var kop = kopGezet ? '' : '<h2 class="soon">Nog geen prijs <span>We zoeken deze filamenten nog bij de winkels</span></h2>';
-        kopGezet = true;
-        return kop + '<article class="item none"><div class="head">' + spool(p.color) +
-          '<div><div class="pname">' + esc(p.brand) + ' ' + esc(p.name) + '</div><div class="pmeta">' + meta + '</div></div>' +
-          '<div class="best"><div class="shop">nog geen prijs</div></div></div></article>';
-      }
-      var table = '<table><thead><tr><th>Winkel</th><th>Voorraad</th><th class="num">Prijs</th><th class="num">Verzending</th><th class="num">Totaal</th><th class="num">Per kg</th><th></th></tr></thead><tbody>' +
-        a.offers.map(function (o, i) {
-          var s = shops[o.shop];
-          var free = s.freeFrom != null && o.price >= s.freeFrom;
-          var shipTxt = free ? "gratis" : eur.format(s.ship);
-          var cheapest = i === 0 && o.stock;
-          return '<tr class="' + (cheapest ? "cheapest" : "") + '">' +
-            '<td><strong>' + esc(s.name) + '</strong>' + (cheapest ? ' <span class="save">goedkoopst</span>' : '') + '</td>' +
-            '<td><span class="stock ' + (o.stock ? "in" : "out") + '">' + (o.stock ? "Op voorraad" : "Niet op voorraad") + '</span>' +
-              (o.stale ? '<span class="ad">prijs van ' + new Date(o.checked).toLocaleDateString("nl-NL", { day: "numeric", month: "short" }) + '</span>' : '') + '</td>' +
-            '<td class="num">' + eur.format(o.price) + '</td>' +
-            '<td class="num">' + shipTxt + '</td>' +
-            '<td class="num"><strong>' + eur.format(o.price + (free ? 0 : s.ship)) + '</strong></td>' +
-            '<td class="num">' + eur.format(total(o) / kg) + '</td>' +
-            '<td><a class="go' + (cheapest ? "" : " plain") + '" href="' + esc(link(p, o)) + '" target="_blank" rel="' + (s.affiliate ? "sponsored nofollow noopener" : "nofollow noopener") + '">Naar winkel</a>' +
-            (s.affiliate ? '<span class="ad">advertentielink</span>' : '') + '</td></tr>';
-        }).join("") + '</tbody></table>';
-      return '<article class="item' + (open ? " open" : "") + '" data-id="' + esc(p.id) + '">' +
-        '<button type="button" class="head" aria-expanded="' + (open ? "true" : "false") + '">' +
-          spool(p.color) +
-          '<div><div class="pname">' + esc(p.brand) + ' ' + esc(p.name) + '</div><div class="pmeta">' + meta + '</div></div>' +
-          '<div class="best"><div class="price">' + eur.format(total(a.best)) + '</div><div class="shop">' + (a.best.stock ? "bij " : "uitverkocht bij ") + esc(shops[a.best.shop].name) + ' · ' + a.offers.length + (a.offers.length === 1 ? " winkel" : " winkels") + '</div></div>' +
-          '<div class="perkg"><b>' + eur.format(a.perKg) + '</b><span>per kg</span></div>' +
-          '<svg class="chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>' +
-        '</button>' +
-        '<div class="offers">' + table + '</div></article>';
+    $("titel").textContent = state.mat === "Alles" ? "Alle filamenten" : (state.mat === "Mat" ? "Matte filamenten" : state.mat + "-filament");
+    $("count").textContent = met.length + (met.length === 1 ? " filament" : " filamenten") + " · " + (state.ship ? "inclusief" : "exclusief") + " verzendkosten";
+    $("list").innerHTML = met.length ? met.slice(0, state.toon).map(rij).join("") :
+      '<div class="empty">Geen filament gevonden. Probeer een andere zoekterm, of kies ‘Alles’ en ‘Alle merken’.</div>';
+    $("more").hidden = met.length <= state.toon;
+    $("morebtn").textContent = "Toon meer filamenten (" + (met.length - state.toon) + " over)";
+    $("soon").hidden = !zonder.length;
+    $("soonbtn").innerHTML = '<span>' + zonder.length + (zonder.length === 1 ? " filament wacht" : " filamenten wachten") + ' nog op een prijs</span><span aria-hidden="true">' + ($("soon").classList.contains("open") ? "▴" : "▾") + '</span>';
+    $("soonlist").innerHTML = zonder.map(function (r) {
+      return '<div class="soonitem">' + spool(r.p.color, "spool") + '<span><b>' + esc(r.p.brand + " " + r.p.name) + '</b><br>' + esc(r.p.colorName) + ' · ' + gewicht(r.p.weight) + '</span></div>';
     }).join("");
-
-    Array.prototype.forEach.call(list.querySelectorAll(".item > button.head"), function (btn) {
-      btn.addEventListener("click", function () {
-        var id = btn.parentNode.dataset.id; state.open[id] = !state.open[id]; render();
-      });
+    Array.prototype.forEach.call($("list").querySelectorAll(".row > .head"), function (btn) {
+      btn.addEventListener("click", function () { var id = btn.parentNode.dataset.id; state.open[id] = !state.open[id]; render(); });
     });
-    stats();
   }
 
   var upd = new Date(data.updated);
-  document.getElementById("updated").textContent = "Bijgewerkt " + upd.toLocaleDateString("nl-NL", { day: "numeric", month: "long" }) + " om " + upd.toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit" });
-  document.getElementById("demo").hidden = !data.demo;
-  document.getElementById("year").textContent = new Date().getFullYear();
-  // Eerste product open, zodat je direct de winkelvergelijking ziet
-  var eersteMetPrijs = data.products.filter(function (p) { return p.offers && p.offers.length; })[0];
-  if (eersteMetPrijs) state.open[eersteMetPrijs.id] = true;
+  var vandaag = upd.toDateString() === new Date().toDateString();
+  $("live").querySelector("span").textContent = "Bijgewerkt " + (vandaag ? "vandaag" : upd.toLocaleDateString("nl-NL", { day: "numeric", month: "short" })) + " " + upd.toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit" });
+  $("demo").hidden = !data.demo;
+  $("year").textContent = new Date().getFullYear();
+  hero();
   render();
 }
 </script>
