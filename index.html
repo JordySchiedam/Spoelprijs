@@ -238,6 +238,8 @@ footer strong { color: var(--ink); font-weight: 600; }
     <div class="right">
       <label for="brand" class="sr">Merk</label>
       <select id="brand"><option value="">Alle merken</option></select>
+      <label for="kleur" class="sr">Kleur</label>
+      <select id="kleur"><option value="">Alle kleuren</option></select>
       <label for="sort" class="sr">Sorteren</label>
       <select id="sort">
         <option value="kg">Laagste prijs per kg</option>
@@ -360,7 +362,7 @@ function start(data) {
   var PAGINA = 30;
   var shops = data.shops;
   var eur = new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR" });
-  var state = { q: "", brand: "", sort: "kg", mat: "Alles", ship: true, open: {}, toon: PAGINA };
+  var state = { q: "", brand: "", kleur: "", sort: "kg", mat: "Alles", ship: true, open: {}, toon: PAGINA };
   try { var s = JSON.parse(localStorage.getItem("spoelprijs-filters") || "null"); if (s) { state.sort = s.sort || state.sort; state.ship = s.ship !== false; } } catch (e) {}
 
   function $(id) { return document.getElementById(id); }
@@ -378,6 +380,39 @@ function start(data) {
     return { offers: offers, best: best, perKg: total(best) / (p.weight / 1000), save: inStock.length > 1 ? hi - total(best) : 0 };
   }
   function matOf(p) { return p.matte ? "Mat" : p.material; }
+  // Kleurgroepen: eerst op kleurnaam (NL/EN), anders op de kleurcode van het staaltje
+  var KLEURGROEPEN = [
+    ["Transparant", /transpar|clear|natur|neutra|translucent/, "#d9e6ea"],
+    ["Zwart", /zwart|black|charcoal|\bjet\b|onyx/, "#1b1b1b"],
+    ["Wit", /\bwit\b|white|ivory|bone|sneeuw|crème|creme|cream/, "#f2f2ef"],
+    ["Grijs", /grijs|grey|gray|antraci|anthraci|zilver|silver|ash|fossil|slate/, "#8d9196"],
+    ["Rood", /rood|\bred\b|maroon|crimson|bordeaux/, "#d23b2f"],
+    ["Oranje", /oranje|orange/, "#ef7d22"],
+    ["Geel", /geel|yellow|banana|lemon/, "#f2c230"],
+    ["Groen", /groen|green|mint|olive|lime|limoen/, "#3c9a4a"],
+    ["Blauw", /blauw|blue|\bice\b|navy|teal|cyan|turquoise|turkoois/, "#2f6fd6"],
+    ["Paars", /paars|purple|violet|lavend|indigo|lila/, "#7d4fc4"],
+    ["Roze", /roze|pink|magenta|candy|peach|rose/, "#e86aa6"],
+    ["Bruin", /bruin|brown|wood|hout|coffee|cocoa|beige|caramel/, "#8a5a3b"],
+    ["Goud & brons", /goud|gold|brons|bronze|koper|copper/, "#c49a3a"],
+    ["Meerkleurig", /kleuren|mixed|multi|rainbow|bundel|bundle/, null]
+  ];
+  function hexAfstand(a, b) {
+    var x = parseInt(a.slice(1), 16), y = parseInt(b.slice(1), 16);
+    var dr = (x >> 16) - (y >> 16), dg = ((x >> 8) & 255) - ((y >> 8) & 255), db = (x & 255) - (y & 255);
+    return dr * dr + dg * dg + db * db;
+  }
+  function kleurGroep(p) {
+    if (p._kleur) return p._kleur;
+    var naam = (p.colorName || "").toLowerCase();
+    var g = KLEURGROEPEN.filter(function (k) { return k[1].test(naam); })[0];
+    if (!g && /^#[0-9a-f]{6}$/i.test(p.color || "") && p.color.toLowerCase() !== "#9aa0a6") {
+      g = KLEURGROEPEN.filter(function (k) { return k[2]; }).sort(function (a, b) { return hexAfstand(p.color, a[2]) - hexAfstand(p.color, b[2]); })[0];
+    }
+    p._kleur = g ? g[0] : "Overig";
+    return p._kleur;
+  }
+  function filtersPassen(p) { return (!state.brand || p.brand === state.brand) && (!state.kleur || kleurGroep(p) === state.kleur) && zoekPast(p); }
   function past(p, mat) { return mat === "Alles" || p.material === mat || (mat === "Mat" && p.matte); }
   // Kleurstaal: een gedraaid, 3D-geprint vaasje in de kleur van het filament
   var RIBBEN = [-10, -1, 8, 17, 26].map(function (o) {
@@ -434,6 +469,14 @@ function start(data) {
   $("q").addEventListener("input", function (e) { state.q = e.target.value; state.toon = PAGINA; render(); });
   $("zoekform").addEventListener("submit", function (e) { e.preventDefault(); $("vergelijk").scrollIntoView({ behavior: "smooth" }); });
   $("brand").addEventListener("change", function (e) { state.brand = e.target.value; state.toon = PAGINA; render(); });
+  // Kleurenlijst: alleen kleuren die echt voorkomen, in vaste volgorde, met aantallen
+  var telKleur = {};
+  alle.forEach(function (r) { if (!r.a.none) { var k = kleurGroep(r.p); telKleur[k] = (telKleur[k] || 0) + 1; } });
+  KLEURGROEPEN.map(function (k) { return k[0]; }).concat(["Overig"]).forEach(function (k) {
+    if (!telKleur[k]) return;
+    var o = document.createElement("option"); o.value = k; o.textContent = k + " (" + telKleur[k] + ")"; $("kleur").appendChild(o);
+  });
+  $("kleur").addEventListener("change", function (e) { state.kleur = e.target.value; state.toon = PAGINA; render(); });
   $("sort").value = state.sort;
   $("sort").addEventListener("change", function (e) { state.sort = e.target.value; bewaar(); render(); });
   $("ship").checked = state.ship;
@@ -479,11 +522,11 @@ function start(data) {
     // Materiaalknoppen met aantallen
     Array.prototype.forEach.call($("seg").children, function (b) {
       var m = b.dataset.mat;
-      var n = alle.filter(function (r) { return !r.a.none && past(r.p, m) && (!state.brand || r.p.brand === state.brand) && zoekPast(r.p); }).length;
+      var n = alle.filter(function (r) { return !r.a.none && past(r.p, m) && filtersPassen(r.p); }).length;
       b.innerHTML = (m === "Mat" ? "Mat" : m) + ' <small>' + n + '</small>';
       b.setAttribute("aria-pressed", String(m === state.mat));
     });
-    var gefilterd = alle.filter(function (r) { return past(r.p, state.mat) && (!state.brand || r.p.brand === state.brand) && zoekPast(r.p); });
+    var gefilterd = alle.filter(function (r) { return past(r.p, state.mat) && filtersPassen(r.p); });
     var met = gefilterd.filter(function (r) { return !r.a.none; });
     var zonder = gefilterd.filter(function (r) { return r.a.none; });
     met.sort(function (x, y) {
@@ -492,10 +535,10 @@ function start(data) {
       if (state.sort === "name") return (x.p.brand + x.p.name).localeCompare(y.p.brand + y.p.name);
       return x.a.perKg - y.a.perKg;
     });
-    $("titel").textContent = state.mat === "Alles" ? "Alle filamenten" : (state.mat === "Mat" ? "Matte filamenten" : state.mat + "-filament");
+    $("titel").textContent = (state.mat === "Alles" ? "Alle filamenten" : (state.mat === "Mat" ? "Matte filamenten" : state.mat + "-filament")) + (state.kleur ? " · " + state.kleur.toLowerCase() : "");
     $("count").textContent = met.length + (met.length === 1 ? " filament" : " filamenten") + " · " + (state.ship ? "inclusief" : "exclusief") + " verzendkosten";
     $("list").innerHTML = met.length ? met.slice(0, state.toon).map(rij).join("") :
-      '<div class="empty">Geen filament gevonden. Probeer een andere zoekterm, of kies ‘Alles’ en ‘Alle merken’.</div>';
+      '<div class="empty">Geen filament gevonden. Probeer een andere zoekterm, of kies ‘Alles’, ‘Alle merken’ en ‘Alle kleuren’.</div>';
     $("more").hidden = met.length <= state.toon;
     $("morebtn").textContent = "Toon meer filamenten (" + (met.length - state.toon) + " over)";
     $("soon").hidden = !zonder.length;
