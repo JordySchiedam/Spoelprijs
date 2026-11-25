@@ -14,27 +14,33 @@
   },
   "3djake": {
     "naam": "3DJake",
-    "type": "feed",
-    "affiliate": true,
-    "feed_env": "AWIN_3DJAKE_FEED_URL",
-    "feed_is_affiliate": true,
-    "kolommen": {
-      "ean": "ean",
-      "id": "merchant_product_id",
-      "naam": "product_name",
-      "prijs": "search_price",
-      "voorraad": "in_stock",
-      "url": "aw_deep_link",
-      "verzending": "delivery_cost",
-      "merk": "brand_name",
-      "kleur": "colour",
-      "categorie": "merchant_category"
-    },
-    "verzending": 4.95,
-    "gratis_vanaf": 49,
-    "_opmerking": "Feed-URL staat in je Awin-account onder Toolbox > Create-a-Feed. Kies daar ook de kolommen brand_name, colour en merchant_category, dan vult de site zich automatisch met alle filamenten uit de feed. Verzendkosten controleren.",
-    "auto_catalogus": true,
-    "auto_max": 2000
+    "type": "html",
+    "affiliate": false,
+    "verzending": 6.9,
+    "gratis_vanaf": 54.9,
+    "_opmerking": "Zonder affiliate: prijzen van 3djake.nl-productpagina's. Verzending NL: €6,90, gratis vanaf €54,90 (van 3djake.nl). De Awin-feedinstellingen staan onder _feed_later, voor als er ooit een NL-programma komt.",
+    "_feed_later": {
+      "type": "feed",
+      "affiliate": true,
+      "feed_env": "AWIN_3DJAKE_FEED_URL",
+      "feed_is_affiliate": true,
+      "kolommen": {
+        "ean": "ean",
+        "id": "merchant_product_id",
+        "naam": "product_name",
+        "prijs": "search_price",
+        "voorraad": "in_stock",
+        "url": "aw_deep_link",
+        "verzending": "delivery_cost",
+        "merk": "brand_name",
+        "kleur": "colour",
+        "categorie": "merchant_category"
+      },
+      "verzending": 4.95,
+      "gratis_vanaf": 49,
+      "auto_catalogus": true,
+      "auto_max": 2000
+    }
   },
   "fepshop": {
     "naam": "FEPshop",
