@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T06:22:59+01:00",
+ "updated": "2026-11-28T06:14:21+01:00",
  "demo": false,
  "shops": {
   "amazon": {
@@ -49,7 +49,7 @@
      "price": 12.89,
      "stock": true,
      "url": "https://www.3djake.nl/sunlu/pla-black-12",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -68,7 +68,7 @@
      "price": 12.89,
      "stock": true,
      "url": "https://www.3djake.nl/sunlu/pla-white-13",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -87,7 +87,7 @@
      "price": 12.89,
      "stock": true,
      "url": "https://www.3djake.nl/sunlu/pla-grey-8",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -107,7 +107,7 @@
      "price": 12.14,
      "stock": true,
      "url": "https://www.3djake.nl/sunlu/pla-matt-white",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -127,7 +127,7 @@
      "price": 12.14,
      "stock": true,
      "url": "https://www.3djake.nl/sunlu/pla-matt-black",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -146,7 +146,7 @@
      "price": 10.47,
      "stock": true,
      "url": "https://www.3djake.nl/elegoo/pla-black-9",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -165,7 +165,7 @@
      "price": 10.47,
      "stock": true,
      "url": "https://www.3djake.nl/elegoo/pla-white-10",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -184,7 +184,7 @@
      "price": 11.35,
      "stock": true,
      "url": "https://www.3djake.nl/elegoo/pla-black-22",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -203,7 +203,7 @@
      "price": 12.95,
      "stock": true,
      "url": "https://www.3djake.nl/elegoo/rapid-pla-black",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -223,14 +223,14 @@
      "price": 12.15,
      "stock": true,
      "url": "https://www.3djake.nl/polymaker/polyterra-pla-charcoal-black",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     },
     {
      "shop": "123-3d",
      "price": 13.59,
      "stock": true,
      "url": "https://www.123-3d.nl/Polymaker-PolyTerra-PLA-filament-1-75-mm-Charcoal-Black-1-kg-PM70820-i7605.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -250,14 +250,14 @@
      "price": 15.36,
      "stock": true,
      "url": "https://www.3djake.nl/polymaker/panchroma-pla-matte-charcoal-black",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     },
     {
      "shop": "123-3d",
      "price": 15.96,
      "stock": true,
      "url": "https://www.123-3d.nl/Polymaker-Panchroma-PLA-Matte-filament-1-75-mm-Charcoal-Black-1-kg-CA04015-i11970.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -276,7 +276,7 @@
      "price": 55.49,
      "stock": true,
      "url": "https://www.3djake.nl/prusa/prusament-pla-galaxy-black-nfc",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -295,7 +295,7 @@
      "price": 33.49,
      "stock": true,
      "url": "https://www.3djake.nl/prusa/prusament-pla-jet-black-nfc",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -314,14 +314,14 @@
      "price": 13.43,
      "stock": true,
      "url": "https://www.3djake.nl/esun/pla-black-7",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     },
     {
      "shop": "123-3d",
      "price": 22.5,
      "stock": true,
      "url": "https://www.123-3d.nl/eSun-PLA-filament-1-75-mm-Black-1-kg-PLA175B1-i4327.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -340,7 +340,7 @@
      "price": 14.34,
      "stock": true,
      "url": "https://www.3djake.nl/3djake/ecopla-black",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -359,7 +359,7 @@
      "price": 14.34,
      "stock": true,
      "url": "https://www.3djake.nl/3djake/ecopla-white",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -401,7 +401,7 @@
      "price": 11.35,
      "stock": true,
      "url": "https://www.3djake.nl/sunlu/petg-black-10",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -420,7 +420,7 @@
      "price": 11.35,
      "stock": true,
      "url": "https://www.3djake.nl/sunlu/petg-white-9",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -439,7 +439,7 @@
      "price": 11.35,
      "stock": true,
      "url": "https://www.3djake.nl/sunlu/high-speed-matte-petg-black",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -469,7 +469,7 @@
      "price": 17.84,
      "stock": true,
      "url": "https://www.3djake.nl/3djake/easypetg-black",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -489,7 +489,7 @@
      "price": 17.61,
      "stock": true,
      "url": "https://www.3djake.nl/sunlu/tpu-95a-black-5",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -509,7 +509,7 @@
      "price": 21.34,
      "stock": true,
      "url": "https://www.3djake.nl/esun/tpu-95a-black-2",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -550,7 +550,7 @@
      "price": 20.25,
      "stock": true,
      "url": "https://www.123-3d.nl/123-3D-Filament-PLA-Zwart-1-75-mm-1-kg-DFB00230c-DFP02295c-DFP02296c-DFP14082c-DFP14110c-i11621.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -568,7 +568,7 @@
      "price": 20.25,
      "stock": true,
      "url": "https://www.123-3d.nl/123-3D-Filament-PLA-Wit-1-75-mm-1-kg-DFB00235c-DFE20224c-DFP02286c-DFP02287c-DFP14074c-i11622.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -586,7 +586,7 @@
      "price": 20.25,
      "stock": true,
      "url": "https://www.123-3d.nl/123-3D-Filament-PLA-Grijs-1-75-mm-1-kg-DFB00244c-DFP02248c-DFP02249c-DFP14064c-DFP14102c-i11623.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -604,7 +604,7 @@
      "price": 20.25,
      "stock": true,
      "url": "https://www.123-3d.nl/123-3D-Filament-PLA-Creme-Wit-1-75-mm-1-kg-i11643.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -622,7 +622,7 @@
      "price": 20.25,
      "stock": true,
      "url": "https://www.123-3d.nl/123-3D-Filament-PLA-Sneeuwwit-1-75-mm-1-kg-DFP16292c-i11627.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -641,7 +641,7 @@
      "price": 23.85,
      "stock": true,
      "url": "https://www.123-3d.nl/123-3D-Filament-PLA-Mat-Zwart-1-75-mm-1-kg-i11722.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -659,7 +659,7 @@
      "price": 29.63,
      "stock": true,
      "url": "https://www.123-3d.nl/123-3D-Filament-PLA-Tough-Wit-1-75-mm-1-kg-DFP02282c-DFP02283c-i11667.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -677,7 +677,7 @@
      "price": 20.25,
      "stock": true,
      "url": "https://www.123-3d.nl/123-3D-Filament-PETG-Zwart-1-75-mm-1-kg-DFE20208c-DFP02212c-DFP02213c-DFP14094c-DFP14194c-i11748.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -695,7 +695,7 @@
      "price": 20.25,
      "stock": true,
      "url": "https://www.123-3d.nl/123-3D-Filament-PETG-Wit-1-75-mm-1-kg-DFE20051c-DFE20216c-DFP02204c-DFP02205c-DFP14096c-i11749.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -713,7 +713,7 @@
      "price": 20.25,
      "stock": true,
      "url": "https://www.123-3d.nl/123-3D-Filament-PETG-Antraciet-1-75-mm-1-kg-i11753.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -731,7 +731,7 @@
      "price": 20.25,
      "stock": true,
      "url": "https://www.123-3d.nl/123-3D-Filament-PETG-Transparant-1-75-mm-1-kg-DFP02217c-i14990.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -750,7 +750,7 @@
      "price": 23.85,
      "stock": true,
      "url": "https://www.123-3d.nl/123-3D-Filament-PETG-Mat-Wit-1-75-mm-1-kg-DFS10114c-i12168.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -769,7 +769,7 @@
      "price": 23.85,
      "stock": true,
      "url": "https://www.123-3d.nl/123-3D-Filament-PETG-CF10-Zwart-1-75-mm-1-kg-i11758.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -787,7 +787,7 @@
      "price": 22.5,
      "stock": true,
      "url": "https://www.123-3d.nl/Polymaker-PolyLite-PETG-filament-1-75-mm-Black-1-kg-70631-DFP14194-PB01001-PM70631-i8684.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -806,7 +806,7 @@
      "price": 15.96,
      "stock": true,
      "url": "https://www.123-3d.nl/Polymaker-Panchroma-PLA-Matte-filament-Ash-Grey-1-75-mm-1-kg-CA04014-i11969-t224184.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -825,7 +825,7 @@
      "price": 15.96,
      "stock": true,
      "url": "https://www.123-3d.nl/Polymaker-Panchroma-PLA-Matte-filament-1-75-mm-Fossil-Grey-1-kg-CA04020-i11975.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -844,7 +844,7 @@
      "price": 15.96,
      "stock": true,
      "url": "https://www.123-3d.nl/Polymaker-Panchroma-PLA-Matte-filament-Wood-Brown-1-75-mm-1-kg-CA04041-i11996.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -863,7 +863,7 @@
      "price": 15.96,
      "stock": true,
      "url": "https://www.123-3d.nl/Polymaker-Panchroma-PLA-Matte-filament-1-75-mm-Pastel-Ice-1-kg-CA04031-i11986.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -882,7 +882,7 @@
      "price": 49.5,
      "stock": true,
      "url": "https://www.123-3d.nl/Polymaker-PolyFlex-TPU-95A-High-Speed-filament-1-75-mm-Black-1-kg-70295-PD03001-PM70295-i7635.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -901,7 +901,7 @@
      "price": 49.5,
      "stock": true,
      "url": "https://www.123-3d.nl/Polymaker-PolyFlex-TPU-95A-High-Speed-filament-1-75-mm-Clear-1-kg-PD03003-i9928-t104862.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -920,7 +920,7 @@
      "price": 34.5,
      "stock": true,
      "url": "https://www.123-3d.nl/Polymaker-PolyFlex-TPU-95A-filament-1-75-mm-Black-0-75-kg-70107-PD01001-PM70107-i7633.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -938,7 +938,7 @@
      "price": 29.95,
      "stock": true,
      "url": "https://www.123-3d.nl/eSun-PETG-filament-1-75-mm-Solid-Black-1-kg-i4272.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -956,7 +956,7 @@
      "price": 29.95,
      "stock": true,
      "url": "https://www.123-3d.nl/eSun-PETG-filament-1-75-mm-Solid-White-1-kg-DFE20051-i4279.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -974,7 +974,7 @@
      "price": 29.95,
      "stock": true,
      "url": "https://www.123-3d.nl/eSun-PETG-filament-1-75-mm-Natural-1-kg-PETG175N1-i4273.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -992,7 +992,7 @@
      "price": 19.5,
      "stock": true,
      "url": "https://www.123-3d.nl/eSUN-ePETG-HS-Zwart-1-75-mm-1-kg-i12886.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -1010,7 +1010,7 @@
      "price": 24.5,
      "stock": true,
      "url": "https://www.123-3d.nl/eSun-ePLA-ST-filament-1-75-mm-Black-1-kg-i9641.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -1028,7 +1028,7 @@
      "price": 22.5,
      "stock": true,
      "url": "https://www.123-3d.nl/eSun-PLA-filament-Grijs-1-75-mm-1-kg-PLA175H1-i4317-t43277.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -1046,7 +1046,7 @@
      "price": 29.5,
      "stock": true,
      "url": "https://www.123-3d.nl/REAL-filament-wit-1-75-mm-PLA-1-kg-DFP02287-i10390.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -1064,7 +1064,7 @@
      "price": 29.5,
      "stock": true,
      "url": "https://www.123-3d.nl/REAL-filament-zwart-1-75-mm-PETG-1-kg-i10316-t27058.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   },
@@ -1082,7 +1082,7 @@
      "price": 34.65,
      "stock": true,
      "url": "https://www.123-3d.nl/colorFabb-varioShore-TPU-filament-Zwart-1-75-mm-0-7-kg-i6998.html",
-     "checked": "2026-11-27T06:22:59+01:00"
+     "checked": "2026-11-28T06:14:21+01:00"
     }
    ]
   }
